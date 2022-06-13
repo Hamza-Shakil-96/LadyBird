@@ -37,7 +37,7 @@ class AddStaff : Driver() {
         data.staff[0].superUser = "yes"
     }
 
-    @Test(testName = "Add Staff")
+    @Test(testName = "Add Staffs")
     fun addNewStaff() {
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
