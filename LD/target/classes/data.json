@@ -1,0 +1,65 @@
+[ {
+  "name" : "Kuphal, Ankunding and Runte",
+  "phone" : "(972) 818-5501",
+  "address" : "8980 Hugh Hollow, Lake Karanview, WY 14074-8949",
+  "street" : "038 Mosciski Locks",
+  "country" : "US",
+  "state" : "56",
+  "city" : "Lake Trumanberg",
+  "zipcode" : "24442",
+  "status" : "1",
+  "admins" : [ {
+    "first_name" : "Kasey",
+    "last_name" : "Christiansen",
+    "email_Address" : "Kasey@mailinator.com",
+    "password" : "Kasey@123",
+    "phone" : "217-973-6835",
+    "designation" : "Admin",
+    "passwordReset" : true
+  } ],
+  "rooms" : [ {
+    "name" : "purple",
+    "url" : "src\\main\\resources\\Assets\\Rooms\\room7.png"
+  } ],
+  "staff" : [ {
+    "first_name" : "Raul",
+    "last_name" : "Bosco",
+    "email_Address" : "Amos@mailinator.com",
+    "phone" : "(832) 843-2288",
+    "emergency_name" : "Melody Beahan",
+    "emergency_phone" : "1-541-408-4909",
+    "postion_type" : "assistant",
+    "title" : "part-time",
+    "superUser" : "yes"
+  }, {
+    "first_name" : "Armando",
+    "last_name" : "Beatty",
+    "email_Address" : "Alejandro@mailinator.com",
+    "phone" : "(481) 598-0038",
+    "emergency_name" : "Nathan Macejkovic",
+    "emergency_phone" : "ttfi",
+    "postion_type" : "assistant",
+    "title" : "part-time",
+    "superUser" : "yes"
+  }, {
+    "first_name" : "Randi",
+    "last_name" : "Waelchi",
+    "email_Address" : "Truman@mailinator.com",
+    "phone" : "(869) 923-7585",
+    "emergency_name" : "Millard Zieme",
+    "emergency_phone" : "743-408-9609",
+    "postion_type" : "assistant",
+    "title" : "part-time",
+    "superUser" : "yes"
+  }, {
+    "first_name" : "Ivana",
+    "last_name" : "Hermann",
+    "email_Address" : "Reynalda@mailinator.com",
+    "phone" : "1-280-831-0251",
+    "emergency_name" : "Dewitt Reichert",
+    "emergency_phone" : "1-603-066-2629",
+    "postion_type" : "assistant",
+    "title" : "part-time",
+    "superUser" : "yes"
+  } ]
+} ]

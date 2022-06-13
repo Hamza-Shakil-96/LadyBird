@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="browser" value= "Chrome" />
+    <parameter name="env" value= "QA" />
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="LadyBird">
+        <classes>
+            <class name="com.perfect.Specs.Login.Authentication"></class>
+            <class name="com.perfect.Specs.School.AddSchool"></class>
+            <class name="com.perfect.Specs.School.ViewSchool"></class>
+            <class name="com.perfect.Specs.Rooms.AddRoom"></class>
+            <class name="com.perfect.Specs.Staff.AddStaff"></class>
+            <class name="com.perfect.Specs.School.DisableSchool"></class>
+            <class name="com.perfect.Specs.Login.Logout"></class>
+        </classes>
+    </test>
+</suite>
