@@ -62,7 +62,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "menu-country_code")
     val countryCodeDropDownElem: WebElement? = null
 
-    @FindBy(className = "MuiList-root")
+    @FindBy(className = "MuiButtonBase-root")
     val dropDownElem: WebElement? = null
 
     @FindBy(id = "menu-state_id")

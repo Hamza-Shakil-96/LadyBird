@@ -1,75 +1,35 @@
 [ {
-  "name" : "Kuphal, Ankunding and Runte",
-  "phone" : "(972) 818-5501",
-  "address" : "8980 Hugh Hollow, Lake Karanview, WY 14074-8949",
-  "street" : "038 Mosciski Locks",
+  "name" : "Bergnaum-Johns",
+  "phone" : "1-216-912-4414",
+  "address" : "663 Dania Manors, Rorymouth, AZ 78176",
+  "street" : "9619 McGlynn Landing",
   "country" : "US",
-  "state" : "56",
-  "city" : "Lake Trumanberg",
-  "zipcode" : "24442",
+  "state" : "6",
+  "city" : "Eddieview",
+  "zipcode" : "23261",
   "status" : "1",
   "admins" : [ {
-    "first_name" : "Kasey",
-    "last_name" : "Christiansen",
-    "email_Address" : "Kasey@mailinator.com",
-    "password" : "Kasey@123",
-    "phone" : "217-973-6835",
+    "first_name" : "Joan",
+    "last_name" : "Predovic",
+    "email_Address" : "Joan@mailinator.com",
+    "password" : "Joan@123",
+    "phone" : "(225) 727-9954",
     "designation" : "Admin",
     "passwordReset" : true
   } ],
   "rooms" : [ {
-    "name" : "purple",
-    "url" : "src\\main\\resources\\Assets\\Rooms\\room7.png"
+    "name" : null,
+    "url" : null
   } ],
   "staff" : [ {
-    "first_name" : "Raul",
-    "last_name" : "Bosco",
-    "email_Address" : "Amos@mailinator.com",
-    "phone" : "(832) 843-2288",
-    "emergency_name" : "Melody Beahan",
-    "emergency_phone" : "1-541-408-4909",
-    "postion_type" : "assistant",
-    "title" : "part-time",
-    "superUser" : "yes"
-  }, {
-    "first_name" : "Armando",
-    "last_name" : "Beatty",
-    "email_Address" : "Alejandro@mailinator.com",
-    "phone" : "(481) 598-0038",
-    "emergency_name" : "Nathan Macejkovic",
-    "emergency_phone" : "ttfi",
-    "postion_type" : "assistant",
-    "title" : "part-time",
-    "superUser" : "yes"
-  }, {
-    "first_name" : "Randi",
-    "last_name" : "Waelchi",
-    "email_Address" : "Truman@mailinator.com",
-    "phone" : "(869) 923-7585",
-    "emergency_name" : "Millard Zieme",
-    "emergency_phone" : "743-408-9609",
-    "postion_type" : "assistant",
-    "title" : "part-time",
-    "superUser" : "yes"
-  }, {
-    "first_name" : "Ivana",
-    "last_name" : "Hermann",
-    "email_Address" : "Reynalda@mailinator.com",
-    "phone" : "1-280-831-0251",
-    "emergency_name" : "Dewitt Reichert",
-    "emergency_phone" : "1-603-066-2629",
-    "postion_type" : "assistant",
-    "title" : "part-time",
-    "superUser" : "yes"
-  }, {
-    "first_name" : "Trinidad",
-    "last_name" : "Schroeder",
-    "email_Address" : "Elwood@mailinator.com",
-    "phone" : "1-176-220-0565",
-    "emergency_name" : "Enedina Bogan",
-    "emergency_phone" : "322-462-3808",
-    "postion_type" : "assistant",
-    "title" : "part-time",
-    "superUser" : "yes"
+    "first_name" : null,
+    "last_name" : null,
+    "email_Address" : null,
+    "phone" : null,
+    "emergency_name" : null,
+    "emergency_phone" : null,
+    "postion_type" : null,
+    "title" : null,
+    "superUser" : null
   } ]
 } ]
