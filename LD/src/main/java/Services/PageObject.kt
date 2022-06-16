@@ -1,13 +1,10 @@
-package Services;
+package Services
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.PageFactory
 
-public class PageObject {
-    protected WebDriver driver;
-
-    public PageObject(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+open class PageObject(protected var driver: WebDriver?) {
+    init {
+        PageFactory.initElements(driver, this)
     }
 }

@@ -77,7 +77,7 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getPositionTypeOptions(type: String?): WebElement? {
-        return this.driver.findElement(By.id(type))
+        return this.driver!!.findElement(By.id(type))
     }
 
     private fun getTitleTypeOptions(title: String?): WebElement? {

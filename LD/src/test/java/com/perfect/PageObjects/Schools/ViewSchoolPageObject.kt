@@ -52,7 +52,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getSchoolListing(): WebElement? {
-        return this.driver.findElement(By.cssSelector("#scrollable-list > div:last-child"))
+        return this.driver!!.findElement(By.cssSelector("#scrollable-list > div:last-child"))
     }
 
     private fun getLastSchoolFromListing(): WebElement? {
@@ -87,7 +87,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
             lastHeight = newHeight
         }
 
-        val schoolNameList = driver.findElements(By.xpath("//*[@id=\"scrollable-list\"]/div/div/div"))
+        val schoolNameList = this.driver!!.findElements(By.xpath("//*[@id=\"scrollable-list\"]/div/div/div"))
         for (elem in schoolNameList) {
             if (elem.text == schoolName) {
                 utilsPageObject.isElementClickable(elem).click()

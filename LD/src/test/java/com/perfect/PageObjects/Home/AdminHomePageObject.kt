@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class AdminHomePageObject(driver: WebDriver?) : PageObject(driver) {
+class AdminHomePageObject(driver: WebDriver?) : PageObject(driver,) {
 
     private var utilsPageObject = UtilsPageObject(this.driver)
 
@@ -24,6 +24,9 @@ class AdminHomePageObject(driver: WebDriver?) : PageObject(driver) {
 
     @FindBy(xpath = "//a[@href='/staff']")
     val linkStaffElem: WebElement? = null
+
+    @FindBy(xpath = "//a[@href='/students']")
+    val linkStudentElem: WebElement? = null
 
     @FindBy(className = "view-as-btn")
     val viewAsBtn: WebElement? = null
@@ -59,6 +62,9 @@ class AdminHomePageObject(driver: WebDriver?) : PageObject(driver) {
     private fun getStaffLink(): WebElement? {
         return linkStaffElem
     }
+    private fun getStudentLink(): WebElement? {
+        return linkStudentElem
+    }
 
     fun clickSchoolLink() {
         utilsPageObject.isElementClickable(getSchoolLink())
@@ -71,6 +77,10 @@ class AdminHomePageObject(driver: WebDriver?) : PageObject(driver) {
     fun clickStaffLink() {
         utilsPageObject.isElementClickable(getStaffLink())
         getStaffLink()!!.click()
+    }
+    fun clickStudentLink() {
+        utilsPageObject.isElementClickable(getStudentLink())
+        getStudentLink()!!.click()
     }
 
 

@@ -82,6 +82,13 @@
             <version>1.0.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.aistomin/sexist -->
+        <dependency>
+            <groupId>com.github.aistomin</groupId>
+            <artifactId>sexist</artifactId>
+            <version>0.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -140,11 +147,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>3.0</version>
         </dependency>
+
     </dependencies>
 
     <build>

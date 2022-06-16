@@ -1,21 +1,21 @@
 [ {
-  "name" : "Ferry, Ferry and Walter",
-  "phone" : "(878) 678-9624",
-  "address" : "Apt. 108 26160 Dicki Place, West Tristan, WV 82693-8038",
-  "street" : "108 Erich Lodge",
+  "name" : "Bergnaum-Johns",
+  "phone" : "1-216-912-4414",
+  "address" : "663 Dania Manors, Rorymouth, AZ 78176",
+  "street" : "9619 McGlynn Landing",
   "country" : "US",
   "state" : "6",
-  "city" : "West Graciela",
-  "zipcode" : "22820",
+  "city" : "Eddieview",
+  "zipcode" : "23261",
   "status" : "1",
   "admins" : [ {
-    "first_name" : "Jefferson",
-    "last_name" : "Zboncak",
-    "email_Address" : "Jefferson@mailinator.com",
-    "password" : "12345678",
-    "phone" : "410.503.7142",
+    "first_name" : "Joan",
+    "last_name" : "Predovic",
+    "email_Address" : "Joan@mailinator.com",
+    "password" : "Joan@123",
+    "phone" : "(225) 727-9954",
     "designation" : "Admin",
-    "passwordReset" : false
+    "passwordReset" : true
   } ],
   "rooms" : [ {
     "name" : null,

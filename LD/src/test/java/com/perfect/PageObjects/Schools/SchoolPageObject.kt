@@ -169,15 +169,15 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getSchoolCountryCode(countryCode: String?): WebElement? {
-        return this.driver.findElement(By.xpath("//li[@data-value='$countryCode']"))
+        return this.driver!!.findElement(By.xpath("//li[@data-value='$countryCode']"))
     }
 
     private fun getSchoolStateCode(stateCode: String?): WebElement? {
-        return this.driver.findElement(By.xpath("//li[@data-value='$stateCode']"))
+        return this.driver!!.findElement(By.xpath("//li[@data-value='$stateCode']"))
     }
 
     private fun getSchoolStatusCode(): List<WebElement?> {
-        return driver.findElements(By.xpath("//*[@id=\"menu-status\"]/div[3]/ul/li"))
+        return this.driver!!.findElements(By.xpath("//*[@id=\"menu-status\"]/div[3]/ul/li"))
     }
 
     private fun getSchoolStateTxt(): WebElement? {

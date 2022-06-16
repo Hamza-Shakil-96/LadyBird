@@ -2,8 +2,10 @@ package com.perfect.PageObjects.Util
 
 import Services.PageObject
 import com.github.javafaker.Faker
-import com.intellij.util.Function.ID
-import org.openqa.selenium.*
+import org.openqa.selenium.By
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
