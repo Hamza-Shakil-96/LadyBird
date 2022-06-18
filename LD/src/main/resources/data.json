@@ -1,43 +1,49 @@
-[
-  {
-    "name": "Bergnaum-Johns",
-    "phone": "1-216-912-4414",
-    "address": "663 Dania Manors, Rorymouth, AZ 78176",
-    "street": "9619 McGlynn Landing",
-    "country": "US",
-    "state": "6",
-    "city": "Eddieview",
-    "zipcode": "23261",
-    "status": "1",
-    "admins": [
-      {
-        "first_name": "Joan",
-        "last_name": "Predovic",
-        "email_Address": "Joan@mailinator.com",
-        "password": "Joan@123",
-        "phone": "(225) 727-9954",
-        "designation": "Admin",
-        "passwordReset": true
-      }
-    ],
-    "rooms": [
-      {
-        "name": "tan",
-        "url": "src\\main\\resources\\Assets\\Rooms\\room6.png"
-      }
-    ],
-    "staff": [
-      {
-        "first_name": null,
-        "last_name": null,
-        "email_Address": null,
-        "phone": null,
-        "emergency_name": null,
-        "emergency_phone": null,
-        "postion_type": null,
-        "title": null,
-        "superUser": null
-      }
-    ]
-  }
-]
+[ {
+  "name" : "Legros-Ebert",
+  "phone" : "+1(296) 635-8526",
+  "address" : "Apt. 675 4247 Tuyet Streets, Eugenioborough, AZ 58407",
+  "street" : "3237 Garland Greens",
+  "country" : "US",
+  "state" : "6",
+  "city" : "South Winfred",
+  "zipcode" : "24580",
+  "status" : "1",
+  "admins" : [ {
+    "first_name" : "Nina",
+    "last_name" : "Pollich",
+    "email_Address" : "Nina@mailinator.com",
+    "password" : "Nina@123",
+    "phone" : "+1 (534) 446-4749",
+    "designation" : "Admin",
+    "passwordReset" : true
+  } ],
+  "rooms" : [ {
+    "name" : "green",
+    "url" : "src\\main\\resources\\Assets\\Rooms\\room3.png"
+  } ],
+  "staff" : [ {
+    "first_name" : "Easter",
+    "last_name" : "Senger",
+    "email_Address" : "Fatimah@mailinator.com",
+    "phone" : "+1 (174) 348-0800",
+    "emergency_name" : "Gilbert Barrows",
+    "emergency_phone" : "+1 (690) 864-6930",
+    "postion_type" : "assistant",
+    "title" : "part-time",
+    "superUser" : "yes"
+  } ],
+  "student" : [ {
+    "first_name" : "Christiane",
+    "last_name" : "Goyette",
+    "dateOfBirth" : "05/01/2018",
+    "homeRoom" : "purple",
+    "gender" : "FEMALE",
+    "address" : "596 Jeremiah Roads, Beierport, CT 64121",
+    "parentType" : "new",
+    "parentFName" : "Joaquin",
+    "parentLName" : "Watsica",
+    "phoneNumber" : "+1 (071) 963-2856",
+    "emailAddress" : "Joaquin@mailinator.com",
+    "relationWithChild" : "mother"
+  } ]
+} ]

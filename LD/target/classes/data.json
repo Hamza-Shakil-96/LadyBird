@@ -1,43 +1,49 @@
-[
-  {
-    "name": "Bergnaum-Johns",
-    "phone": "1-216-912-4414",
-    "address": "663 Dania Manors, Rorymouth, AZ 78176",
-    "street": "9619 McGlynn Landing",
-    "country": "US",
-    "state": "6",
-    "city": "Eddieview",
-    "zipcode": "23261",
-    "status": "1",
-    "admins": [
-      {
-        "first_name": "Joan",
-        "last_name": "Predovic",
-        "email_Address": "Joan@mailinator.com",
-        "password": "Joan@123",
-        "phone": "(225) 727-9954",
-        "designation": "Admin",
-        "passwordReset": true
-      }
-    ],
-    "rooms": [
-      {
-        "name": "tan",
-        "url": "src\\main\\resources\\Assets\\Rooms\\room6.png"
-      }
-    ],
-    "staff": [
-      {
-        "first_name": null,
-        "last_name": null,
-        "email_Address": null,
-        "phone": null,
-        "emergency_name": null,
-        "emergency_phone": null,
-        "postion_type": null,
-        "title": null,
-        "superUser": null
-      }
-    ]
-  }
-]
+[ {
+  "name" : "Buckridge-Cartwright",
+  "phone" : "+1(625) 377-5878",
+  "address" : "Suite 670 536 Morar Shores, Kendallbury, MD 27263",
+  "street" : "38129 Amber Rapid",
+  "country" : "US",
+  "state" : "6",
+  "city" : "North Fredfurt",
+  "zipcode" : "22843",
+  "status" : "1",
+  "admins" : [ {
+    "first_name" : "Clint",
+    "last_name" : "Wiza",
+    "email_Address" : "Clint@mailinator.com",
+    "password" : "Clint@123",
+    "phone" : "+1 (381) 358-6731",
+    "designation" : "Admin",
+    "passwordReset" : true
+  } ],
+  "rooms" : [ {
+    "name" : "red",
+    "url" : "src\\main\\resources\\Assets\\Rooms\\room3.png"
+  } ],
+  "staff" : [ {
+    "first_name" : null,
+    "last_name" : null,
+    "email_Address" : null,
+    "phone" : null,
+    "emergency_name" : null,
+    "emergency_phone" : null,
+    "postion_type" : null,
+    "title" : null,
+    "superUser" : null
+  } ],
+  "student" : [ {
+    "first_name" : "Kemberly",
+    "last_name" : "Hamill",
+    "dateOfBirth" : "06/09/2021",
+    "homeRoom" : "violet",
+    "gender" : "MALE",
+    "address" : "Suite 646 4347 Francis Square, Millstown, NV 48163",
+    "parentType" : "new",
+    "parentFName" : "Debbra",
+    "parentLName" : "Toy",
+    "phoneNumber" : "+1 (277) 840-9345",
+    "emailAddress" : "Debbra@mailinator.com",
+    "relationWithChild" : "mother"
+  } ]
+} ]

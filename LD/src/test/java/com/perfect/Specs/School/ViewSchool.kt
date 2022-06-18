@@ -30,6 +30,7 @@ class ViewSchool : Driver() {
         loginPageObject!!.loginUser(true)
 
         adminHomePageObject!!.navigateToHomeScreen()
+        adminHomePageObject!!.clickSchoolLink()
         adminHomePageObject!!.clickViewAsBtn()
         viewSchoolPageObject!!.selectSchoolFromListing()
         assertTrue(viewSchoolPageObject!!.viewSelectedSchool(), "School Name is not matching")

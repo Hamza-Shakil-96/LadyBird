@@ -27,11 +27,11 @@ class AddSchool : Driver() {
         homePageObject = AdminHomePageObject(webDriver)
         data.admins[0].first_name = faker.name().firstName()
         data.admins[0].last_name = faker.name().lastName()
-        data.admins[0].phone = faker.phoneNumber().cellPhone()
+        data.admins[0].phone = faker.numerify("+1 (###) ###-####")
         data.admins[0].designation = "Admin"
         data.admins[0].email_Address =  data.admins[0].first_name + "@mailinator.com"
         data.name = faker.company().name()
-        data.phone = faker.phoneNumber().cellPhone()
+        data.phone = faker.numerify("+1(###) ###-####")
         data.address = faker.address().fullAddress()
         data.street = faker.address().streetAddress()
         data.country = "US"
@@ -57,8 +57,8 @@ class AddSchool : Driver() {
         schoolPageObject!!.addSchoolInfo(data)
         schoolPageObject!!.clickAddSchoolBtn()
 //        Assertion (Success Toast)
-        //schoolPageObject!!.viewSuccessMessage()
-        assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
+        schoolPageObject!!.viewSuccessMessage()
+       // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
     }
     @Test(testName = "Login as School Admin")
     fun loginAsNewlyAddedSchoolAdmin() {

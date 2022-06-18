@@ -118,6 +118,7 @@ class RoomPageObject(driver: WebDriver?) : PageObject(driver) {
         roomList.add(data)
         school.rooms = roomList
         dataList.add(school)
+        utilsPageObject.viewSuccessMessage()
         FileService.convertJavaObjectToJson(dataList)
     }
 

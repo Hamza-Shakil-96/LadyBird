@@ -22,6 +22,9 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(className = "view-school-btn")
     val viewSchoolBtnElem: WebElement? = null
 
+    @FindBy(className = "hd-school")
+    val checkElem: WebElement? = null
+
     @FindBy(xpath = "//*[@id=\"fuse-navbar\"]/div/div/div[1]/p")
     val schoolNameElem: WebElement? = null
 
@@ -58,11 +61,14 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     private fun getLastSchoolFromListing(): WebElement? {
         return lastElem
     }
+    private fun viewCheckBox(): WebElement? {
+        return checkElem
+    }
 
     fun selectSchoolFromListing() {
         utilsPageObject.isLoaderElementVisible()
         utilsPageObject.isLoaderElementInvisible()
-        utilsPageObject.isElementVisible(getSchoolListing())
+        utilsPageObject.isElementVisible(viewCheckBox())
         val schoolObject = FileService.convertJsonToJavaObjects().last()
         val schoolName = schoolObject.get("name").asText()
         val js = driver as JavascriptExecutor

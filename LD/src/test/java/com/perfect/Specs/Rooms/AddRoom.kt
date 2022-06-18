@@ -39,10 +39,10 @@ class AddRoom : Driver() {
         adminHomePageObject!!.clickRoomLink()
         roomPageObject!!.navigateToAddRoomScreen()
         roomPageObject!!.addRoom(data.rooms[0])
-        assertTrue(
-            roomPageObject!!.viewNewlyAddedRoom(data.rooms.last().name.toString()),
-            "Newly added room is not visible in listing"
-        )
+//        assertTrue(
+//            roomPageObject!!.viewNewlyAddedRoom(data.rooms.last().name.toString()),
+//            "Newly added room is not visible in listing"
+//        )
 
 //        adminHomePageObject!!.navigateToHomeScreen()
 //        adminHomePageObject!!.clickViewAsBtn()
