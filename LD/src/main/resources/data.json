@@ -1,35 +1,43 @@
-[ {
-  "name" : "Bergnaum-Johns",
-  "phone" : "1-216-912-4414",
-  "address" : "663 Dania Manors, Rorymouth, AZ 78176",
-  "street" : "9619 McGlynn Landing",
-  "country" : "US",
-  "state" : "6",
-  "city" : "Eddieview",
-  "zipcode" : "23261",
-  "status" : "1",
-  "admins" : [ {
-    "first_name" : "Joan",
-    "last_name" : "Predovic",
-    "email_Address" : "Joan@mailinator.com",
-    "password" : "Joan@123",
-    "phone" : "(225) 727-9954",
-    "designation" : "Admin",
-    "passwordReset" : true
-  } ],
-  "rooms" : [ {
-    "name" : null,
-    "url" : null
-  } ],
-  "staff" : [ {
-    "first_name" : null,
-    "last_name" : null,
-    "email_Address" : null,
-    "phone" : null,
-    "emergency_name" : null,
-    "emergency_phone" : null,
-    "postion_type" : null,
-    "title" : null,
-    "superUser" : null
-  } ]
-} ]
+[
+  {
+    "name": "Bergnaum-Johns",
+    "phone": "1-216-912-4414",
+    "address": "663 Dania Manors, Rorymouth, AZ 78176",
+    "street": "9619 McGlynn Landing",
+    "country": "US",
+    "state": "6",
+    "city": "Eddieview",
+    "zipcode": "23261",
+    "status": "1",
+    "admins": [
+      {
+        "first_name": "Joan",
+        "last_name": "Predovic",
+        "email_Address": "Joan@mailinator.com",
+        "password": "Joan@123",
+        "phone": "(225) 727-9954",
+        "designation": "Admin",
+        "passwordReset": true
+      }
+    ],
+    "rooms": [
+      {
+        "name": "tan",
+        "url": "src\\main\\resources\\Assets\\Rooms\\room6.png"
+      }
+    ],
+    "staff": [
+      {
+        "first_name": null,
+        "last_name": null,
+        "email_Address": null,
+        "phone": null,
+        "emergency_name": null,
+        "emergency_phone": null,
+        "postion_type": null,
+        "title": null,
+        "superUser": null
+      }
+    ]
+  }
+]

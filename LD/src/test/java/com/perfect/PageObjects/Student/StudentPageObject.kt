@@ -1,22 +1,24 @@
 package com.perfect.PageObjects.Student
 
 import Services.PageObject
-import com.github.aistomin.sexist.DefaultDictionary
 import com.github.javafaker.Faker
 import com.perfect.PageObjects.Util.UtilsPageObject
+import org.openqa.selenium.By
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
+import org.openqa.selenium.support.ui.Select
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
 import java.awt.datatransfer.StringSelection
-import java.text.SimpleDateFormat
 
 
 class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject: UtilsPageObject = UtilsPageObject(this.driver)
+
+    private val faker = Faker()
 
     @FindBy(id = "enroll-student-btn")
     val enrollAddBtnElem: WebElement? = null
@@ -39,8 +41,11 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "date-of-birth")
     val dOBTxtElem: WebElement? = null
 
-    @FindBy(id = "homeroomLabel")
+    @FindBy(className = " MuiSelect-icon")
     val homeRoomDropDownElem: WebElement? = null
+
+    @FindBy(id = "homeroomLabel")
+    val homeRoomLblDropDownElem: WebElement? = null
 
     @FindBy(id = "gender")
     val genderDropDownElem: WebElement? = null
@@ -107,14 +112,21 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     private fun getDOBTxtField(): WebElement? {
         return dOBTxtElem
     }
+    private fun getHomeRoomDropdownField(): WebElement? {
+        return homeRoomDropDownElem
+    }
+    private fun getHomeRoomLblDropdownField(): WebElement? {
+        return homeRoomLblDropDownElem
+    }
+    private fun selectHomeRoomField(room:String){
+        val select = Select(driver!!.findElement(By.id("homeroom")))
+        select.selectByValue(room)
+////        utilsPageObject.isElementClickable(getHomeRoomLblDropdownField()).click()
+//        utilsPageObject.isElementClickable(getHomeRoomDropdownField()).click()
+////        this.driver!!.findElement(By.id(room)).click()
+    }
 
     private fun setDOBField(dob: String) {
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
-        val faker = Faker()
-        var NamesDictionary = DefaultDictionary()
-        println(faker.name().firstName()+": " + NamesDictionary.gender(faker.name().firstName()))
-        val dob = sdf.format(faker.date().birthday(3, 5))
-        println(dob)
         val stringSelection = StringSelection(dob)
         val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
         clipboard.setContents(stringSelection, null)
@@ -136,9 +148,11 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     fun addNewStudent() {
-        setFNameTxtField("hamza")
-        setLNameTxtField("shakil")
-        setDOBField("09252013")
+        setFNameTxtField(faker.name().firstName())
+        setLNameTxtField(faker.name().lastName())
+        selectHomeRoomField("tan")
+//        setDOBField(sdf.format(faker.date().birthday(3, 5)))
+
     }
 
 

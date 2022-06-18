@@ -14,6 +14,7 @@ class SchoolData() {
     var admins = arrayListOf(Admins())
     var rooms = arrayListOf(Rooms())
     var staff = arrayListOf(Staff())
+    var student = arrayListOf(Student())
 
     class Admins() {
         var first_name: String? = null
@@ -29,9 +30,24 @@ class SchoolData() {
     class Rooms() {
         var name: String? = null
         var url: String? = null
-
     }
 
+    class Student(){
+        var first_name: String? = null
+        var last_name: String? = null
+        var dateOfBirth: String? = null
+        var homeRoom: String? = null
+        var gender: String? = null
+        var adress: String? = null
+        var parentType: String? = null
+        var parentFName: String? = null
+        var parentLName: String? = null
+        var phoneNumber: String? = null
+        var emailAddress: String? = null
+        var relationWithChild: String? = null
+
+
+    }
     class Staff() {
         var first_name: String? = null
         var last_name: String? = null
