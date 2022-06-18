@@ -13,6 +13,7 @@
             <class name="com.perfect.Specs.School.ViewSchool"></class>
             <class name="com.perfect.Specs.Rooms.AddRoom"></class>
             <class name="com.perfect.Specs.Staff.AddStaff"></class>
+            <class name="com.perfect.Specs.Student.AddStudent"></class>
             <class name="com.perfect.Specs.School.DisableSchool"></class>
             <class name="com.perfect.Specs.Login.Logout"></class>
         </classes>

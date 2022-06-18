@@ -107,6 +107,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     private fun getCountryCodeDropDown(): WebElement? {
         return countryCodeDropDownElem
     }
+
     private fun getDropDown(): WebElement? {
         return dropDownElem
     }
@@ -169,11 +170,11 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getSchoolCountryCode(countryCode: String?): WebElement? {
-        return this.driver!!.findElement(By.xpath("//li[@data-value='$countryCode']"))
+        return utilsPageObject.waitForElem("//li[@data-value='$countryCode']", "xpath")
     }
 
     private fun getSchoolStateCode(stateCode: String?): WebElement? {
-        return this.driver!!.findElement(By.xpath("//li[@data-value='$stateCode']"))
+        return utilsPageObject.waitForElem("//li[@data-value='$stateCode']", "xpath")
     }
 
     private fun getSchoolStatusCode(): List<WebElement?> {
@@ -298,6 +299,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         selectSchoolCity(data.city)
         selectSchoolZipCode(data.zipcode)
         selectSchoolStatus()
+        FileService.convertJavaObjectToJson(dataList)
     }
 
     fun viewSuccessMessage() {

@@ -29,6 +29,18 @@ class UtilsPageObject(driver: WebDriver?) : PageObject(driver) {
         return wait.until(ExpectedConditions.visibilityOf(element))
     }
 
+    fun waitForElem(elem: String?, locater: String = "id"): WebElement {
+        if (locater == "class") {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(elem)))
+        } else if (locater == "name") {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(elem)))
+        }else if (locater == "xpath") {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elem)))
+        }
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elem)))
+
+    }
+
     fun isLoaderElementInvisible() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By
             .className(loaderClassName)))

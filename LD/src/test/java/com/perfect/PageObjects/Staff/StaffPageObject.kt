@@ -239,8 +239,10 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
         staffList.add(data)
         schoolData.staff = staffList
         dataList.add(schoolData)
+
         FileService.convertJavaObjectToJson(dataList)
         clickStaffAddBtn()
+        utilsPageObject.viewSuccessMessage()
     }
 
     private fun clickAddBtn() {

@@ -38,7 +38,7 @@ class SchoolData() {
         var dateOfBirth: String? = null
         var homeRoom: String? = null
         var gender: String? = null
-        var adress: String? = null
+        var address: String? = null
         var parentType: String? = null
         var parentFName: String? = null
         var parentLName: String? = null

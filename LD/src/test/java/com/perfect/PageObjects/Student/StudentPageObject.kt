@@ -1,14 +1,15 @@
 package com.perfect.PageObjects.Student
 
+import Services.FileService
 import Services.PageObject
-import com.github.javafaker.Faker
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Util.UtilsPageObject
-import org.openqa.selenium.By
 import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import org.openqa.selenium.support.ui.Select
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
 import java.awt.datatransfer.StringSelection
@@ -18,7 +19,11 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject: UtilsPageObject = UtilsPageObject(this.driver)
 
-    private val faker = Faker()
+    @FindBy(className = "MuiSnackbarContent-message")
+    val toastMsg: WebElement? = null
+
+    @FindBy(className = "MuiList-root")
+    val dropDownElem: WebElement? = null
 
     @FindBy(id = "enroll-student-btn")
     val enrollAddBtnElem: WebElement? = null
@@ -41,7 +46,7 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "date-of-birth")
     val dOBTxtElem: WebElement? = null
 
-    @FindBy(className = " MuiSelect-icon")
+    @FindBy(id = "homeroom")
     val homeRoomDropDownElem: WebElement? = null
 
     @FindBy(id = "homeroomLabel")
@@ -68,10 +73,13 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "lname-parent")
     val lnameParentTxtElem: WebElement? = null
 
+    @FindBy(id = "relationLabel")
+    val kidRelationDropdownLbl: WebElement? = null
+
     @FindBy(id = "childRelation")
     val kidRelationDropdownElem: WebElement? = null
 
-    @FindBy(id = "contact-parent-label")
+    @FindBy(id = "contact-parent")
     val phoneNumberTxtElem: WebElement? = null
 
     @FindBy(id = "email-parent")
@@ -80,8 +88,15 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "parent-autocpmplete")
     val parentTxtElem: WebElement? = null
 
+    @FindBy(id = "submit")
+    val addStudentBtn: WebElement? = null
+
     private fun getAddBtn(): WebElement? {
         return enrollAddBtnElem
+    }
+
+    private fun getStudentAddBtn(): WebElement? {
+        return addStudentBtn
     }
 
     private fun getSearchTxtField(): WebElement? {
@@ -97,7 +112,59 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         return fNameTxtElem
     }
 
-    private fun setFNameTxtField(name: String) {
+    private fun getParentFNameTxtField(): WebElement? {
+        return fnameParentTxtElem
+    }
+
+    private fun getKidRelationDropDownLbl(): WebElement? {
+        return kidRelationDropdownLbl
+    }
+
+    private fun getKidRelationDropDownField(): WebElement? {
+        return kidRelationDropdownElem
+    }
+
+    private fun getKidRelation(relation: String?): WebElement? {
+        return utilsPageObject.waitForElem(relation)
+    }
+
+    private fun getParentLNameTxtField(): WebElement? {
+        return lnameParentTxtElem
+    }
+
+    private fun getPhoneTxtField(): WebElement? {
+        return phoneNumberTxtElem
+    }
+
+    private fun getEmailAddressTxtField(): WebElement? {
+        return emailAddressTxtElem
+    }
+
+    private fun setPhoneNoTxtField(name: String?) {
+        getPhoneTxtField()!!.sendKeys(name)
+    }
+
+    private fun setEmailAddressTxtField(name: String?) {
+        getEmailAddressTxtField()!!.sendKeys(name)
+    }
+
+    private fun setParentFNameTxtField(name: String?) {
+        getParentFNameTxtField()!!.sendKeys(name)
+    }
+
+    private fun setParentLNameTxtField(name: String?) {
+        getParentLNameTxtField()!!.sendKeys(name)
+    }
+
+    private fun getAddressField(): WebElement? {
+        return addressTxtElem
+    }
+
+    private fun setAddressTxtField(address: String?) {
+        getAddressField()!!.sendKeys(address)
+    }
+
+    private fun setFNameTxtField(name: String?) {
         getFNameTxtField()!!.sendKeys(name)
     }
 
@@ -105,28 +172,68 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         return lNameTxtElem
     }
 
-    private fun setLNameTxtField(name: String) {
+    private fun setLNameTxtField(name: String?) {
         getLNameTxtField()!!.sendKeys(name)
     }
 
     private fun getDOBTxtField(): WebElement? {
         return dOBTxtElem
     }
+
     private fun getHomeRoomDropdownField(): WebElement? {
         return homeRoomDropDownElem
     }
+
+    private fun getParentTypeDropDownField(): WebElement? {
+        return parentTypeDropdownElem
+    }
+
+    private fun getNewParentTypeDropDownElem(): WebElement? {
+        return newParentTypeDropdownElem
+    }
+
     private fun getHomeRoomLblDropdownField(): WebElement? {
         return homeRoomLblDropDownElem
     }
-    private fun selectHomeRoomField(room:String){
-        val select = Select(driver!!.findElement(By.id("homeroom")))
-        select.selectByValue(room)
-////        utilsPageObject.isElementClickable(getHomeRoomLblDropdownField()).click()
-//        utilsPageObject.isElementClickable(getHomeRoomDropdownField()).click()
-////        this.driver!!.findElement(By.id(room)).click()
+
+    private fun getGenderDropdownField(): WebElement? {
+        return genderDropDownElem
     }
 
-    private fun setDOBField(dob: String) {
+    private fun getDropDown(): WebElement? {
+        return dropDownElem
+    }
+
+    private fun setGenderDropDownField(gender: String?) {
+        utilsPageObject.isElementClickable(getGenderDropdownField()).click()
+        utilsPageObject.waitForElem(gender).click()
+    }
+
+    private fun getHomeRoom(room: String?): WebElement? {
+        return utilsPageObject.waitForElem(room)
+    }
+
+    private fun selectHomeRoomField(room: String?) {
+        utilsPageObject.isElementClickable(getHomeRoomLblDropdownField()).click()
+        getHomeRoomDropdownField()!!.sendKeys(Keys.chord(Keys.ENTER));
+        getHomeRoom(room)!!.click()
+    }
+
+    private fun selectKidRelationField(relation: String?) {
+        utilsPageObject.isElementClickable(getKidRelationDropDownLbl()).click()
+        getKidRelationDropDownField()!!.sendKeys(Keys.chord(Keys.ENTER));
+        getKidRelation(relation)!!.click()
+    }
+
+    private fun selectParentTypeField(type: String?) {
+        utilsPageObject.isElementClickable(getParentTypeDropDownField()).click()
+        if (type == "new") {
+            utilsPageObject.isElementClickable(getNewParentTypeDropDownElem()).click()
+        }
+
+    }
+
+    private fun setDOBField(dob: String?) {
         val stringSelection = StringSelection(dob)
         val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
         clipboard.setContents(stringSelection, null)
@@ -147,11 +254,44 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         utilsPageObject.isElementClickable(getAddBtn()).click()
     }
 
-    fun addNewStudent() {
-        setFNameTxtField(faker.name().firstName())
-        setLNameTxtField(faker.name().lastName())
-        selectHomeRoomField("tan")
-//        setDOBField(sdf.format(faker.date().birthday(3, 5)))
+    private fun clickStudentAddBtn() {
+        utilsPageObject.isElementClickable(getStudentAddBtn()).click()
+    }
+
+    fun addNewStudent(data: SchoolData.Student) {
+        val objectMapper = ObjectMapper()
+        val node: JsonNode =
+            FileService.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
+        val schoolData: SchoolData = objectMapper.treeToValue(node[0], SchoolData::class.java)
+        val studentList = ArrayList<SchoolData.Student>()
+
+        setFNameTxtField(data.first_name)
+        setLNameTxtField(data.last_name)
+        selectHomeRoomField(schoolData.rooms[0].name)
+        setDOBField(data.dateOfBirth)
+        setGenderDropDownField(data.gender!!.lowercase())
+        setAddressTxtField(data.address)
+        utilsPageObject.elementScrollDown(getParentTypeDropDownField())
+        selectParentTypeField(data.parentType)
+        setParentFNameTxtField(data.parentFName)
+        setParentLNameTxtField(data.parentLName)
+        selectKidRelationField(data.relationWithChild)
+        utilsPageObject.elementScrollDown(getKidRelationDropDownLbl())
+        setPhoneNoTxtField(data.phoneNumber)
+        setEmailAddressTxtField(data.emailAddress)
+        clickStudentAddBtn()
+        utilsPageObject.viewSuccessMessage()
+
+        val dataList = ArrayList<SchoolData>()
+        for (element in schoolData.student) {
+            if (element.first_name != null) {
+                studentList.add(element)
+            }
+        }
+        studentList.add(data)
+        schoolData.student = studentList
+        dataList.add(schoolData)
+        FileService.convertJavaObjectToJson(dataList)
 
     }
 
