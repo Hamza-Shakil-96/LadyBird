@@ -9,6 +9,7 @@ import com.perfect.PageObjects.Schools.ViewSchoolPageObject
 import com.perfect.PageObjects.Staff.StaffPageObject
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
+import java.lang.reflect.Method
 import java.util.*
 import kotlin.test.assertTrue
 
@@ -38,7 +39,8 @@ class AddStaff : Driver() {
     }
 
     @Test(testName = "Add Staff")
-    fun addNewStaff() {
+    fun addNewStaff(method: Method) {
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

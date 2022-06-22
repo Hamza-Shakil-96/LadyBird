@@ -1,25 +1,25 @@
 [ {
-  "name" : "Buckridge-Cartwright",
-  "phone" : "+1(625) 377-5878",
-  "address" : "Suite 670 536 Morar Shores, Kendallbury, MD 27263",
-  "street" : "38129 Amber Rapid",
+  "name" : "Berge-Sanford",
+  "phone" : "+1(999) 812-0723",
+  "address" : "Apt. 651 549 Andy Prairie, Lake Lyn, LA 08247",
+  "street" : "925 Emard Plains",
   "country" : "US",
   "state" : "6",
-  "city" : "North Fredfurt",
-  "zipcode" : "22843",
+  "city" : "Jenaville",
+  "zipcode" : "23115",
   "status" : "1",
   "admins" : [ {
-    "first_name" : "Clint",
-    "last_name" : "Wiza",
-    "email_Address" : "Clint@mailinator.com",
-    "password" : "Clint@123",
-    "phone" : "+1 (381) 358-6731",
+    "first_name" : "Reena",
+    "last_name" : "Schoen",
+    "email_Address" : "Reena@mailinator.com",
+    "password" : "Reena@123",
+    "phone" : "+1 (422) 528-0403",
     "designation" : "Admin",
     "passwordReset" : true
   } ],
   "rooms" : [ {
-    "name" : "red",
-    "url" : "src\\main\\resources\\Assets\\Rooms\\room3.png"
+    "name" : null,
+    "url" : null
   } ],
   "staff" : [ {
     "first_name" : null,
@@ -33,17 +33,17 @@
     "superUser" : null
   } ],
   "student" : [ {
-    "first_name" : "Kemberly",
-    "last_name" : "Hamill",
-    "dateOfBirth" : "06/09/2021",
-    "homeRoom" : "violet",
-    "gender" : "MALE",
-    "address" : "Suite 646 4347 Francis Square, Millstown, NV 48163",
-    "parentType" : "new",
-    "parentFName" : "Debbra",
-    "parentLName" : "Toy",
-    "phoneNumber" : "+1 (277) 840-9345",
-    "emailAddress" : "Debbra@mailinator.com",
-    "relationWithChild" : "mother"
+    "first_name" : null,
+    "last_name" : null,
+    "dateOfBirth" : null,
+    "homeRoom" : null,
+    "gender" : null,
+    "address" : null,
+    "parentType" : null,
+    "parentFName" : null,
+    "parentLName" : null,
+    "phoneNumber" : null,
+    "emailAddress" : null,
+    "relationWithChild" : null
   } ]
 } ]

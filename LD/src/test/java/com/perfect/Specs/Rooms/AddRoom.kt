@@ -9,6 +9,7 @@ import com.perfect.PageObjects.Rooms.RoomPageObject
 import com.perfect.PageObjects.Schools.ViewSchoolPageObject
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
+import java.lang.reflect.Method
 import java.util.*
 import kotlin.test.assertTrue
 
@@ -32,7 +33,8 @@ class AddRoom : Driver() {
     }
 
     @Test(testName = "Add room in newly added school")
-    fun addRoomAgainstTheSchool() {
+    fun addRoomAgainstTheSchool(method:Method) {
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <parameter name="browser" value= "Chrome" />
-    <parameter name="env" value= "QA" />
-    <listeners>
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-    </listeners>
+    <parameter name="browser" value="Chrome"/>
+    <parameter name="env" value="QA"/>
+<!--    <listeners>-->
+<!--&lt;!&ndash;        <listener class-name="org.uncommons.reportng.HTMLReporter"/>&ndash;&gt;&ndash;&gt;-->
+<!--        <listener class-name="utils.listeners.TestListener"/>-->
+<!--        <listener class-name="utils.listeners.AnnotationTransformer"/>-->
+<!--    </listeners>-->
+<!--    <listeners>-->
+<!--        <listener class-name="utils.listeners.TestListener"/>-->
+<!--        <listener class-name="utils.listeners.AnnotationTransformer"/>-->
+<!--    </listeners>-->
     <test verbose="2" preserve-order="true" name="LadyBird">
         <classes>
             <class name="com.perfect.Specs.Login.Authentication"></class>

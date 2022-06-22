@@ -8,6 +8,7 @@ import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Schools.SchoolPageObject
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
+import java.lang.reflect.Method
 import java.util.*
 import kotlin.test.assertTrue
 
@@ -29,7 +30,7 @@ class AddSchool : Driver() {
         data.admins[0].last_name = faker.name().lastName()
         data.admins[0].phone = faker.numerify("+1 (###) ###-####")
         data.admins[0].designation = "Admin"
-        data.admins[0].email_Address =  data.admins[0].first_name + "@mailinator.com"
+        data.admins[0].email_Address = data.admins[0].first_name + "@mailinator.com"
         data.name = faker.company().name()
         data.phone = faker.numerify("+1(###) ###-####")
         data.address = faker.address().fullAddress()
@@ -42,8 +43,9 @@ class AddSchool : Driver() {
     }
 
     @Test(testName = "Add new school with single admin")
-    fun addNewSchoolWithSingleAdmin() {
-
+    fun addNewSchoolWithSingleAdmin(method: Method) {
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
@@ -58,10 +60,12 @@ class AddSchool : Driver() {
         schoolPageObject!!.clickAddSchoolBtn()
 //        Assertion (Success Toast)
         schoolPageObject!!.viewSuccessMessage()
-       // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
+        // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
     }
+
     @Test(testName = "Login as School Admin")
-    fun loginAsNewlyAddedSchoolAdmin() {
+    fun loginAsNewlyAddedSchoolAdmin(method: Method) {
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

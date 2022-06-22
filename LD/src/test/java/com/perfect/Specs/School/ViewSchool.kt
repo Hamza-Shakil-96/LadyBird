@@ -6,6 +6,7 @@ import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Schools.ViewSchoolPageObject
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
+import java.lang.reflect.Method
 import kotlin.test.assertTrue
 
 class ViewSchool : Driver() {
@@ -22,8 +23,8 @@ class ViewSchool : Driver() {
     }
 
     @Test(testName = "View School")
-    fun selectAndViewSchool() {
-
+    fun selectAndViewSchool(method: Method) {
+        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
