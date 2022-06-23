@@ -10,8 +10,6 @@ import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Student.StudentPageObject
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
-import java.io.File
-import java.io.FileInputStream
 import java.lang.reflect.Method
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +28,6 @@ class AddStudent : Driver() {
 
     @BeforeMethod
     fun initializationPageObjects() {
-
         adminHomePageObject = AdminHomePageObject(webDriver)
         loginPageObject = LoginPageObject(webDriver)
         studentPageObject = StudentPageObject(webDriver)
@@ -69,7 +66,7 @@ class AddStudent : Driver() {
 
     @Test(testName = "Add Student with new parent", priority = 1)
     fun addNewStudentWithNewParent(method: Method) {
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

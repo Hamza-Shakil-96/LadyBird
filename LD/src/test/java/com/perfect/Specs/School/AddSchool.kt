@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.lang.reflect.Method
 import java.util.*
-import kotlin.test.assertTrue
 
 
 class AddSchool : Driver() {
@@ -44,8 +43,8 @@ class AddSchool : Driver() {
 
     @Test(testName = "Add new school with single admin")
     fun addNewSchoolWithSingleAdmin(method: Method) {
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
@@ -65,7 +64,7 @@ class AddSchool : Driver() {
 
     @Test(testName = "Login as School Admin")
     fun loginAsNewlyAddedSchoolAdmin(method: Method) {
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

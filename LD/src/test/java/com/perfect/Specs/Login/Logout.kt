@@ -11,7 +11,7 @@ class Logout : Driver() {
 
     @Test(testName = "Logout")
     fun userLogout(method: Method) {
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject = LoginPageObject(webDriver)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()

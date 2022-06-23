@@ -25,7 +25,7 @@ class DisableSchool : Driver() {
 
     @Test(testName = "Disable School")
     fun searchAndDisableSchool(method: Method) {
-        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
