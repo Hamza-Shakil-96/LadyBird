@@ -18,15 +18,12 @@ open class ListenerTest : Driver(), ITestListener {
     private var dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     private var now = LocalDateTime.now()
     private var date = dtf.format(now)
-    var reports: ExtentReports? = null
 
     override fun onFinish(result: ITestContext) {
-        reports!!.endTest(getTest())
-        reports!!.flush()
+        extentReports!!.flush()
     }
 
     override fun onStart(Result: ITestContext) {
-
     }
 
     override fun onTestFailedButWithinSuccessPercentage(Result: ITestResult) {}
@@ -51,6 +48,7 @@ open class ListenerTest : Driver(), ITestListener {
             println("Exception while taking screenshot " + e.message)
 
         }
+
     }
 
     // When Test case get Skipped, this method is called.
@@ -61,14 +59,14 @@ open class ListenerTest : Driver(), ITestListener {
     // When Test case get Started, this method is called.
     override fun onTestStart(Result: ITestResult) {
         getTestMethodName(Result)
-        reports = createExtentReports()
         println(getTestMethodName(Result) + "test is starting.")
 
     }
 
     // When Test case get passed, this method is called.
     override fun onTestSuccess(Result: ITestResult) {
-        println(getTestMethodName(Result) + " test is succeed.")
+        getTest()!!.log(LogStatus.PASS, "test case passed")
+
     }
 
     private fun getTestMethodName(iTestResult: ITestResult): String? {

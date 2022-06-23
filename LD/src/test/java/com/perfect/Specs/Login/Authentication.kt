@@ -1,6 +1,7 @@
 package com.perfect.Specs.Login
 
 import Services.Driver
+import com.aventstack.extentreports.Status
 import com.github.javafaker.Faker
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
@@ -35,21 +36,21 @@ class Authentication : Driver() {
         getTest()!!.log(LogStatus.INFO, "View Login Modal")
         //Assertion (View validation msg)
         loginPageObject!!.loginUser(true)
-//        getTest()!!.log(LogStatus.INFO, "Login successfully")
+        getTest()!!.log(LogStatus.INFO, "Login successfully")
         homePageObject!!.navigateToHomeScreen()
-//        getTest()!!.log(LogStatus.INFO, "Navigate to home screen")
+        getTest()!!.log(LogStatus.INFO, "Navigate to home screen")
     }
 
     @Test(testName = "Authentication with InValid Credentials", priority = 2)
     fun loginWithInValidCredentials(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.name, method.getAnnotation(Test::class.java).testName)
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
-//        test!!.log(LogStatus.INFO, "View Login Modal")
+        getTest()!!.log(LogStatus.INFO, "View Login Modal")
         loginPageObject!!.loginUser(false, email, password)
-//        test!!.log(LogStatus.INFO, "Login successfully")
+        getTest()!!.log(LogStatus.INFO, "Login successfully")
         //Assertion (View validation msg)
         loginPageObject!!.viewValidationMsg()
-//        test!!.log(LogStatus.INFO, "View error message")
+        getTest()!!.log(LogStatus.INFO, "View error message")
     }
 }

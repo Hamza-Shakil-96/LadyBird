@@ -13,8 +13,6 @@ open class Driver {
 
     private var props = FileService.getProps("data")
     private var environment: String? = null
-    var extent: ExtentReports? = null
-    private val extentTestMap: HashMap<Int, ExtentTest> = HashMap<Int, ExtentTest>() //define empty hashmap
 
     @BeforeTest
     @Parameters("browser")
@@ -50,29 +48,31 @@ open class Driver {
         webDriver!!.quit()
     }
 
-    fun createExtentReports(): ExtentReports? {
-        extent = ExtentReports("test-output/report.html", false)
-        return extent
-    }
-
-    @Synchronized
     fun startTest(testName: String?, desc: String?): ExtentTest? {
-        println(testName)
-        val test: ExtentTest = extent!!.startTest(testName, desc)
-        extentTestMap[Thread.currentThread().id.toInt()] = test
+        val test = extentReports!!.startTest(testName, desc)
+        hashMap[Thread.currentThread().id.toInt()] = test
         return test
     }
 
-    @Synchronized
+    @AfterMethod
+    fun endTest() {
+        extentReports!!.endTest(getTest())
+    }
+
     open fun getTest(): ExtentTest? {
-        println(extentTestMap[0])
-        return extentTestMap[Thread.currentThread().id.toInt()]
+        return hashMap[Thread.currentThread().id.toInt()]
     }
 
     companion object {
 
         @JvmStatic
         protected var webDriver: WebDriver? = null
+
+        @JvmStatic
+        val hashMap: HashMap<Int, ExtentTest> = HashMap<Int, ExtentTest>()
+
+        @JvmStatic
+        var extentReports: ExtentReports? = ExtentReports("output/extent-report.html", false)
 
     }
 }
