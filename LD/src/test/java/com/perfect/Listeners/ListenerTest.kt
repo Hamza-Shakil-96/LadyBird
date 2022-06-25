@@ -1,8 +1,11 @@
 package com.perfect.Listeners
 
 import Services.BaseClassManager
+import com.aventstack.extentreports.Status
 import com.relevantcodes.extentreports.LogStatus
 import org.apache.commons.io.FileUtils
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import org.testng.ITestContext
@@ -23,6 +26,7 @@ open class ListenerTest() : BaseClassManager(), ITestListener {
     }
 
     override fun onStart(Result: ITestContext) {
+
     }
 
     override fun onTestFailedButWithinSuccessPercentage(Result: ITestResult) {}
@@ -40,9 +44,9 @@ open class ListenerTest() : BaseClassManager(), ITestListener {
             getTest()!!.log(LogStatus.FAIL, result.throwable.message.toString())
             getTest()!!.log(
                 LogStatus.FAIL,
-                "ScreenShot below: " + getTest()!!.addScreenCapture(File("C:\\temp\\$date\\$filename").toString())
+                "ScreenShot below: " + getTest()!!.addBase64ScreenShot(File("C:\\temp\\$date\\$filename").toString())
             )
-            getTest()!!.addScreenCapture(File("C:\\temp\\$date\\$filename").toString())
+            getTest()!!.addBase64ScreenShot(File("C:\\temp\\$date\\$filename").toString())
         } catch (e: Exception) {
             println("Exception while taking screenshot " + e.message)
 
@@ -64,11 +68,7 @@ open class ListenerTest() : BaseClassManager(), ITestListener {
 
     // When Test case get passed, this method is called.
     override fun onTestSuccess(Result: ITestResult) {
-        getTest()!!.log(LogStatus.PASS, Result.method.description)
-        getTest()!!.log(LogStatus.PASS, Result.method.methodName)
-        getTest()!!.log(LogStatus.PASS, Result.method.qualifiedName)
-        getTest()!!.log(LogStatus.PASS, Result.method.currentInvocationCount.toString())
-        getTest()!!.log(LogStatus.PASS, Result.testName)
+        getTest()!!.log(LogStatus.PASS, "Test passed");
     }
 
     private fun getTestMethodName(iTestResult: ITestResult): String? {

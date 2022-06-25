@@ -4,6 +4,7 @@ import Services.BaseClassManager
 import com.github.javafaker.Faker
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
+import org.testng.ITestContext
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.lang.reflect.Method
@@ -26,20 +27,25 @@ class Authentication : BaseClassManager() {
     }
 
     @Test(
-        testName = "Authentication with Valid Credentials",
+        testName = "Login With Valid Credentials",
         description = "Authentication with Valid Credentials",
         priority = 1,
+        suiteName = "Login"
     )
     fun loginWithValidCredentials(method: Method) {
-        startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser(true)
         homePageObject!!.navigateToHomeScreen()
     }
 
-    @Test(testName = "Authentication with InValid Credentials", priority = 2)
+    @Test(testName = "Login With InValid Credentials", priority = 2, suiteName = "Login")
     fun loginWithInValidCredentials(method: Method) {
-        startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser(false, email, password)
         loginPageObject!!.viewValidationMsg()

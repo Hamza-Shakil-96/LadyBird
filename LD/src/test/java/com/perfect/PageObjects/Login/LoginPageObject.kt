@@ -35,7 +35,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(className = "resetsubmit")
     val resetBtn: WebElement? = null
 
-    @FindBy(xpath = "//*[@id=\"fuse-toolbar\"]/div/div[2]/button/span[1]")
+    @FindBy(xpath = "//*[@id=\"fuse-toolbar\"]/div/div[3]/button/span[1]")
     val profileAvatar: WebElement? = null
 
     @FindBy(className = "MuiSnackbarContent-message")
@@ -78,9 +78,6 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
         return loginFormElem
     }
 
-
-
-
     fun getBtnLogin(): WebElement? {
         return loginBtn
     }
@@ -104,27 +101,27 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
         getUpdatePassword()!!.sendKeys(password)
     }
 
-    fun setConfirmPassword(password: String?) {
+    private fun setConfirmPassword(password: String?) {
         getConfirmPassword()!!.clear()
         getConfirmPassword()!!.sendKeys(password)
     }
 
-    fun clickLoginBtn() {
+    private fun clickLoginBtn() {
         utilsPageObject.isElementClickable(getBtnLogin())
         getBtnLogin()!!.click()
     }
 
-    fun clickResetBtn() {
+    private fun clickResetBtn() {
         utilsPageObject.isElementClickable(getBtnReset())
         getBtnReset()!!.click()
     }
 
-    fun clickProfileBtn() {
+    private fun clickProfileBtn() {
         utilsPageObject.isElementClickable(profileAvatar)
         profileAvatar!!.click()
     }
 
-    fun clickLogoutBtn() {
+    private fun clickLogoutBtn() {
         utilsPageObject.isElementClickable(logoutSpan)
         logoutSpan!!.click()
     }
@@ -138,7 +135,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
     fun loginUser(
         isAdmin: Boolean = false, email: String? = null, password: String? = null,
     ) {
-        getTest()!!.log(LogStatus.INFO, "Login uer")
+        getTest()!!.log(LogStatus.INFO, "Login user")
         var currentEmailAddress: String? = ""
         var currentPassword: String? = ""
         var updatePassword: String? = ""
@@ -166,6 +163,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
             setUpdatePassword(updatePassword);
             setConfirmPassword(updatePassword);
             clickResetBtn()
+            getTest()!!.log(LogStatus.INFO, "Password Reset Successfully")
             utilsPageObject.isLoaderElementVisible()
             utilsPageObject.isLoaderElementInvisible()
             utilsPageObject.isElementVisible(getEmail())
@@ -176,6 +174,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
             data.admins[0].isPasswordReset = true
             dataList.add(data)
             FileServiceManager.convertJavaObjectToJson(dataList)
+
         }
         getTest()!!.log(LogStatus.INFO, "Login successfully")
     }

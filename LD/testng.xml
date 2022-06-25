@@ -7,25 +7,31 @@
     <listeners>
         <listener class-name="com.perfect.Listeners.ListenerTest"/>
     </listeners>
-<!--    <listeners>-->
-<!--&lt;!&ndash;        <listener class-name="org.uncommons.reportng.HTMLReporter"/>&ndash;&gt;&ndash;&gt;-->
-<!--        <listener class-name="utils.listeners.TestListener"/>-->
-<!--        <listener class-name="utils.listeners.AnnotationTransformer"/>-->
-<!--    </listeners>-->
-<!--    <listeners>-->
-<!--        <listener class-name="utils.listeners.TestListener"/>-->
-<!--        <listener class-name="utils.listeners.AnnotationTransformer"/>-->
-<!--    </listeners>-->
-    <test verbose="2" preserve-order="true" name="LadyBird">
+    <test verbose="2" preserve-order="true" name="Ladybird">
         <classes>
             <class name="com.perfect.Specs.Login.Authentication"></class>
-<!--            <class name="com.perfect.Specs.School.AddSchool"></class>-->
-<!--            <class name="com.perfect.Specs.School.ViewSchool"></class>-->
-<!--            <class name="com.perfect.Specs.Rooms.AddRoom"></class>-->
-<!--            <class name="com.perfect.Specs.Staff.AddStaff"></class>-->
-<!--            <class name="com.perfect.Specs.Student.AddStudent"></class>-->
-<!--            <class name="com.perfect.Specs.School.DisableSchool"></class>-->
-<!--            <class name="com.perfect.Specs.Login.Logout"></class>-->
+            <!--            <class name="com.perfect.Specs.School.AddSchool"></class>-->
+            <!--            <class name="com.perfect.Specs.School.ViewSchool"></class>-->
+            <!--            <class name="com.perfect.Specs.Rooms.AddRoom"></class>-->
+            <!--            <class name="com.perfect.Specs.Staff.AddStaff"></class>-->
+            <!--            <class name="com.perfect.Specs.Student.AddStudent"></class>-->
+            <!--            <class name="com.perfect.Specs.School.DisableSchool"></class>-->
+                        <class name="com.perfect.Specs.Login.Logout"></class>
         </classes>
     </test>
+<!--    <test verbose="2" preserve-order="true" name="School">-->
+<!--        <classes>-->
+<!--            <class name="com.perfect.Specs.School.AddSchool"></class>-->
+<!--        </classes>-->
+<!--    </test>   <test verbose="2" preserve-order="true" name="School">-->
+<!--        <classes>-->
+<!--            <class name="com.perfect.Specs.School.ViewSchool"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test verbose="2" preserve-order="true" name="Login">-->
+<!--        <classes>-->
+<!--            <class name="com.perfect.Specs.Login.Logout"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+
 </suite>
