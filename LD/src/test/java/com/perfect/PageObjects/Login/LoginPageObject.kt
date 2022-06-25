@@ -1,10 +1,11 @@
 package com.perfect.PageObjects.Login
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Util.UtilsPageObject
+import com.relevantcodes.extentreports.LogStatus
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -12,8 +13,9 @@ import org.openqa.selenium.support.FindBy
 
 class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
     private var utilsPageObject = UtilsPageObject(this.driver)
-    private var props = FileService.getProps("data")
+    private var props = FileServiceManager.getProps("data")
     private val dataList = ArrayList<SchoolData>()
+
 
     @FindBy(id = "email")
     val userEmail: WebElement? = null
@@ -51,6 +53,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     fun viewLoginModal() {
+        getTest()!!.log(LogStatus.INFO, "View Login Modal")
         utilsPageObject.isElementVisible(getLoginForm())
     }
 
@@ -128,12 +131,14 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
 
 
     fun viewValidationMsg() {
+        getTest()!!.log(LogStatus.INFO, "View error message")
         utilsPageObject.isElementVisible(invalidCredentialMsg)
     }
 
     fun loginUser(
         isAdmin: Boolean = false, email: String? = null, password: String? = null,
     ) {
+        getTest()!!.log(LogStatus.INFO, "Login uer")
         var currentEmailAddress: String? = ""
         var currentPassword: String? = ""
         var updatePassword: String? = ""
@@ -147,7 +152,7 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
 
         } else if (!isAdmin) {
             val objectMapper = ObjectMapper()
-            var node = FileService.convertJsonToJavaObjects()
+            var node = FileServiceManager.convertJsonToJavaObjects()
             data = objectMapper.treeToValue(node[0], SchoolData::class.java)
             currentEmailAddress = data.admins[0].email_Address
             currentPassword = data.admins[0].password
@@ -170,8 +175,9 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
             data.admins[0].password = updatePassword
             data.admins[0].isPasswordReset = true
             dataList.add(data)
-            FileService.convertJavaObjectToJson(dataList)
+            FileServiceManager.convertJavaObjectToJson(dataList)
         }
+        getTest()!!.log(LogStatus.INFO, "Login successfully")
     }
 
     fun logoutUser() {

@@ -2,11 +2,12 @@ package com.perfect.PageObjects.Home
 
 import Services.PageObject
 import com.perfect.PageObjects.Util.UtilsPageObject
+import com.relevantcodes.extentreports.LogStatus
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class AdminHomePageObject(driver: WebDriver?) : PageObject(driver,) {
+class AdminHomePageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject = UtilsPageObject(this.driver)
 
@@ -47,6 +48,7 @@ class AdminHomePageObject(driver: WebDriver?) : PageObject(driver,) {
 
     fun navigateToHomeScreen() {
         utilsPageObject.isElementVisible(getNavBar())
+        getTest()!!.log(LogStatus.INFO, "Navigate to home screen")
     }
 
     private fun getSchoolLink(): WebElement? {

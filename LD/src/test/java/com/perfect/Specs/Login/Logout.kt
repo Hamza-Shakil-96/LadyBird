@@ -1,11 +1,11 @@
 package com.perfect.Specs.Login
 
-import Services.Driver
+import Services.BaseClassManager
 import com.perfect.PageObjects.Login.LoginPageObject
 import org.testng.annotations.Test
 import java.lang.reflect.Method
 
-class Logout : Driver() {
+class Logout : BaseClassManager() {
 
     private var loginPageObject: LoginPageObject? = null
 

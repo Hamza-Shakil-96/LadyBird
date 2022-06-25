@@ -5,7 +5,7 @@
     <parameter name="env" value="QA"/>
 
     <listeners>
-        <listener class-name="com.perfect.PageObjects.Util.ListenerTest"/>
+        <listener class-name="com.perfect.Listeners.ListenerTest"/>
     </listeners>
 <!--    <listeners>-->
 <!--&lt;!&ndash;        <listener class-name="org.uncommons.reportng.HTMLReporter"/>&ndash;&gt;&ndash;&gt;-->

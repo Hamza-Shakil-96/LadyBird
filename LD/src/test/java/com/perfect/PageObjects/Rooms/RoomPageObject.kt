@@ -1,6 +1,6 @@
 package com.perfect.PageObjects.Rooms
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -16,9 +16,9 @@ import java.io.File
 class RoomPageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject: UtilsPageObject = UtilsPageObject(this.driver)
-    private var props = FileService.getProps("data")
+    private var props = FileServiceManager.getProps("data")
     val objectMapper = ObjectMapper()
-    val node: JsonNode = FileService.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
+    val node: JsonNode = FileServiceManager.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
     val school: SchoolData = objectMapper.treeToValue(node[0], SchoolData::class.java)
     var roomList = ArrayList<Rooms>()
     var dataList = ArrayList<Any>()
@@ -119,7 +119,7 @@ class RoomPageObject(driver: WebDriver?) : PageObject(driver) {
         school.rooms = roomList
         dataList.add(school)
         utilsPageObject.viewSuccessMessage()
-        FileService.convertJavaObjectToJson(dataList)
+        FileServiceManager.convertJavaObjectToJson(dataList)
     }
 
     fun viewNewlyAddedRoom(name: String): Boolean {

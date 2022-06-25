@@ -1,7 +1,6 @@
-package com.perfect.PageObjects.Util
+package com.perfect.Listeners
 
-import Services.Driver
-import com.relevantcodes.extentreports.ExtentReports
+import Services.BaseClassManager
 import com.relevantcodes.extentreports.LogStatus
 import org.apache.commons.io.FileUtils
 import org.openqa.selenium.OutputType
@@ -14,7 +13,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-open class ListenerTest : Driver(), ITestListener {
+open class ListenerTest() : BaseClassManager(), ITestListener {
     private var dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     private var now = LocalDateTime.now()
     private var date = dtf.format(now)
@@ -65,8 +64,11 @@ open class ListenerTest : Driver(), ITestListener {
 
     // When Test case get passed, this method is called.
     override fun onTestSuccess(Result: ITestResult) {
-        getTest()!!.log(LogStatus.PASS, "test case passed")
-
+        getTest()!!.log(LogStatus.PASS, Result.method.description)
+        getTest()!!.log(LogStatus.PASS, Result.method.methodName)
+        getTest()!!.log(LogStatus.PASS, Result.method.qualifiedName)
+        getTest()!!.log(LogStatus.PASS, Result.method.currentInvocationCount.toString())
+        getTest()!!.log(LogStatus.PASS, Result.testName)
     }
 
     private fun getTestMethodName(iTestResult: ITestResult): String? {

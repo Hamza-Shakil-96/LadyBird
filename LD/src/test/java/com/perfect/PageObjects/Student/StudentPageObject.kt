@@ -1,6 +1,6 @@
 package com.perfect.PageObjects.Student
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -261,7 +261,7 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
     fun addNewStudent(data: SchoolData.Student) {
         val objectMapper = ObjectMapper()
         val node: JsonNode =
-            FileService.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
+            FileServiceManager.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
         val schoolData: SchoolData = objectMapper.treeToValue(node[0], SchoolData::class.java)
         val studentList = ArrayList<SchoolData.Student>()
 
@@ -291,7 +291,7 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         studentList.add(data)
         schoolData.student = studentList
         dataList.add(schoolData)
-        FileService.convertJavaObjectToJson(dataList)
+        FileServiceManager.convertJavaObjectToJson(dataList)
 
     }
 

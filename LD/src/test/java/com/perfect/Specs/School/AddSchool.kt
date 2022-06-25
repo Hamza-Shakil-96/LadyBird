@@ -1,6 +1,6 @@
 package com.perfect.Specs.School
 
-import Services.Driver
+import Services.BaseClassManager
 import com.github.javafaker.Faker
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
@@ -12,7 +12,7 @@ import java.lang.reflect.Method
 import java.util.*
 
 
-class AddSchool : Driver() {
+class AddSchool : BaseClassManager() {
 
     private var loginPageObject: LoginPageObject? = null
     private var schoolPageObject: SchoolPageObject? = null

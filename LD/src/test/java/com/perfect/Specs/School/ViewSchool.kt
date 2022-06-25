@@ -1,6 +1,6 @@
 package com.perfect.Specs.School
 
-import Services.Driver
+import Services.BaseClassManager
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Schools.ViewSchoolPageObject
@@ -9,7 +9,7 @@ import org.testng.annotations.Test
 import java.lang.reflect.Method
 import kotlin.test.assertTrue
 
-class ViewSchool : Driver() {
+class ViewSchool : BaseClassManager() {
 
     private var adminHomePageObject: AdminHomePageObject? = null
     private var loginPageObject: LoginPageObject? = null

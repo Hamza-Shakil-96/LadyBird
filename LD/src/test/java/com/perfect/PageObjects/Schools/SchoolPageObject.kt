@@ -1,6 +1,6 @@
 package com.perfect.PageObjects.Schools
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.perfect.Class.SchoolData
@@ -299,7 +299,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         selectSchoolCity(data.city)
         selectSchoolZipCode(data.zipcode)
         selectSchoolStatus()
-        FileService.convertJavaObjectToJson(dataList)
+        FileServiceManager.convertJavaObjectToJson(dataList)
     }
 
     fun viewSuccessMessage() {
@@ -316,7 +316,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         var data: SchoolData
         if (dataList.size == 0) {
             val objectMapper = ObjectMapper()
-            var node = FileService.convertJsonToJavaObjects()
+            var node = FileServiceManager.convertJsonToJavaObjects()
             data = objectMapper.treeToValue(node[0], SchoolData::class.java)
             schoolName = data.name
         } else {
@@ -344,7 +344,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         val firstRowTxt = getSchoolListingFirstRow()!!.text
         println("Expected: $schoolName Actual: $firstRowTxt")
         return if (schoolName!!.lowercase() == firstRowTxt.lowercase()) {
-            FileService.convertJavaObjectToJson(dataList)
+            FileServiceManager.convertJavaObjectToJson(dataList)
             true
         } else {
             false

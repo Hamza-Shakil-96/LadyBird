@@ -1,6 +1,6 @@
 package com.perfect.Specs.School
 
-import Services.Driver
+import Services.BaseClassManager
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Schools.SchoolPageObject
@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.lang.reflect.Method
 
-class DisableSchool : Driver() {
+class DisableSchool : BaseClassManager() {
     private var homePageObject: AdminHomePageObject? = null
     private var loginPageObject: LoginPageObject? = null
     private var viewSchoolPageObject: ViewSchoolPageObject? = null

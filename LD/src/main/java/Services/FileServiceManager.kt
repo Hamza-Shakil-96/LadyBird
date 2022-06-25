@@ -3,16 +3,15 @@ package Services
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import java.io.*
-import java.io.File
 import java.util.*
 
 
-object FileService {
+object FileServiceManager {
     fun getProps(filename: String = "data"): Properties {
         val myProps = Properties()
         try {
             val propFile = File("src/main/resources/$filename.properties")
-            if (propFile.exists()) myProps.load(FileInputStream(propFile)) else println("FileService Not Found$filename")
+            if (propFile.exists()) myProps.load(FileInputStream(propFile)) else println("FileServiceManager Not Found$filename")
         } catch (e: Exception) {
             e.printStackTrace()
         }

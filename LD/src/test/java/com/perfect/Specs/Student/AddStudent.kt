@@ -1,6 +1,6 @@
 package com.perfect.Specs.Student
 
-import Services.Driver
+import Services.BaseClassManager
 import com.github.aistomin.sexist.DefaultDictionary
 import com.github.aistomin.sexist.NamesDictionary
 import com.github.javafaker.Faker
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AddStudent : Driver() {
+class AddStudent : BaseClassManager() {
     private var adminHomePageObject: AdminHomePageObject? = null
     private var loginPageObject: LoginPageObject? = null
     private var studentPageObject: StudentPageObject? = null

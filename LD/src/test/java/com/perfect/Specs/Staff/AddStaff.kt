@@ -1,6 +1,6 @@
 package com.perfect.Specs.Staff
 
-import Services.Driver
+import Services.BaseClassManager
 import com.github.javafaker.Faker
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
@@ -12,7 +12,7 @@ import org.testng.annotations.Test
 import java.lang.reflect.Method
 import java.util.*
 
-class AddStaff : Driver() {
+class AddStaff : BaseClassManager() {
     private var adminHomePageObject: AdminHomePageObject? = null
     private var loginPageObject: LoginPageObject? = null
     private var viewSchoolPageObject: ViewSchoolPageObject? = null

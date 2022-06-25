@@ -1,6 +1,6 @@
 package com.perfect.PageObjects.Schools
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.perfect.PageObjects.Home.SchoolHomePageObject
 import com.perfect.PageObjects.Util.UtilsPageObject
@@ -69,7 +69,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         utilsPageObject.isLoaderElementVisible()
         utilsPageObject.isLoaderElementInvisible()
         utilsPageObject.isElementVisible(viewCheckBox())
-        val schoolObject = FileService.convertJsonToJavaObjects().last()
+        val schoolObject = FileServiceManager.convertJsonToJavaObjects().last()
         val schoolName = schoolObject.get("name").asText()
         val js = driver as JavascriptExecutor
 
@@ -107,7 +107,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         schoolHomePageObject.getNavBar()
         utilsPageObject.isElementVisible(getSchoolName())
         val name = getSchoolName()!!.text
-        val schoolObject = FileService.convertJsonToJavaObjects().last()
+        val schoolObject = FileServiceManager.convertJsonToJavaObjects().last()
         val schoolName = schoolObject.get("name").asText()
         println("Expected: $schoolName Actual: $name")
         return schoolName.lowercase() == name.lowercase()

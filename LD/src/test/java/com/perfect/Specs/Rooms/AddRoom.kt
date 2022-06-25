@@ -1,6 +1,6 @@
 package com.perfect.Specs.Rooms
 
-import Services.Driver
+import Services.BaseClassManager
 import com.github.javafaker.Faker
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
@@ -12,7 +12,7 @@ import org.testng.annotations.Test
 import java.lang.reflect.Method
 import java.util.*
 
-class AddRoom : Driver() {
+class AddRoom : BaseClassManager() {
 
     private var adminHomePageObject: AdminHomePageObject? = null
     private var loginPageObject: LoginPageObject? = null

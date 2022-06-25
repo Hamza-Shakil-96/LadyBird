@@ -1,6 +1,6 @@
 package com.perfect.PageObjects.Staff
 
-import Services.FileService
+import Services.FileServiceManager
 import Services.PageObject
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -217,7 +217,7 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
     fun addStaff(data: SchoolData.Staff) {
         val objectMapper = ObjectMapper()
         val node: JsonNode =
-            FileService.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
+            FileServiceManager.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
         val schoolData: SchoolData = objectMapper.treeToValue(node[0], SchoolData::class.java)
         val staffList = ArrayList<SchoolData.Staff>()
         val dataList = ArrayList<SchoolData>()
@@ -240,7 +240,7 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
         schoolData.staff = staffList
         dataList.add(schoolData)
 
-        FileService.convertJavaObjectToJson(dataList)
+        FileServiceManager.convertJavaObjectToJson(dataList)
         clickStaffAddBtn()
         utilsPageObject.viewSuccessMessage()
     }
