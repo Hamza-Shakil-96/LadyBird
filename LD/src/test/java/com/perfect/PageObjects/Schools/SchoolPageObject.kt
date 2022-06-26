@@ -5,6 +5,7 @@ import Services.PageObject
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Util.UtilsPageObject
+import com.relevantcodes.extentreports.LogStatus
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -104,8 +105,8 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         return disableYesBtn
     }
 
-    private fun getCountryCodeDropDown(): WebElement? {
-        return countryCodeDropDownElem
+    private fun getSchoolCityDropDown(): WebElement? {
+        return schoolCityTxtField
     }
 
     private fun getDropDown(): WebElement? {
@@ -169,12 +170,14 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         return schoolCountryTxtField
     }
 
-    private fun getSchoolCountryCode(countryCode: String?): WebElement? {
-        return utilsPageObject.waitForElem("//li[@data-value='$countryCode']", "xpath")
+    private fun getSchoolCountryCode(countryName: String?): WebElement? {
+        //return utilsPageObject.waitForElem("//li[@data-value='$countryCode']", "xpath")
+        return utilsPageObject.waitForElem("//*[contains(text(),'$countryName')]", "xpath")
     }
 
-    private fun getSchoolStateCode(stateCode: String?): WebElement? {
-        return utilsPageObject.waitForElem("//li[@data-value='$stateCode']", "xpath")
+    private fun getSchoolStateCode(state: String?): WebElement? {
+        //return utilsPageObject.waitForElem("//li[@data-value='$stateCode']", "xpath")
+        return utilsPageObject.waitForElem("//*[contains(text(),'$state')]", "xpath")
     }
 
     private fun getSchoolStatusCode(): List<WebElement?> {
@@ -185,8 +188,8 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         return schoolStateTxtField
     }
 
-    private fun getSchoolCityTxt(): WebElement? {
-        return schoolCityTxtField
+    private fun getSchoolCityTxt(city: String?): WebElement? {
+        return utilsPageObject.waitForElem("//*[contains(text(),'$city')]", "xpath")
     }
 
     private fun getSchoolZipcodeTxt(): WebElement? {
@@ -269,8 +272,11 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun selectSchoolCity(city: String?) {
-        getSchoolCityTxt()!!.clear()
-        getSchoolCityTxt()!!.sendKeys(city)
+        getSchoolCityDropDown()!!.click()
+        utilsPageObject.isElementVisible(getDropDown())
+        utilsPageObject.isElementClickable(getSchoolCityTxt(city)).click()
+//        getSchoolCityTxt()!!.clear()
+//        getSchoolCityTxt()!!.sendKeys(city)
     }
 
     private fun selectSchoolZipCode(zipCode: String?) {
@@ -284,6 +290,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
 
     fun addSchoolInfo(data: SchoolData) {
         dataList.add(data)
+        getTest()!!.log(LogStatus.INFO, "Filling school data")
         setFnameTxtField(data.admins[0].first_name)
         setLnameTxtField(data.admins[0].last_name)
         setemailTxtField(data.admins[0].email_Address)
@@ -299,11 +306,13 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         selectSchoolCity(data.city)
         selectSchoolZipCode(data.zipcode)
         selectSchoolStatus()
+        clickAddSchoolBtn()
         FileServiceManager.convertJavaObjectToJson(dataList)
     }
 
     fun viewSuccessMessage() {
         utilsPageObject.isElementVisible(toastMsg)
+        getTest()!!.log(LogStatus.INFO, "School Added successfully")
     }
 
     fun clickAddBtn() {

@@ -34,9 +34,9 @@ class AddSchool : BaseClassManager() {
         data.phone = faker.numerify("+1(###) ###-####")
         data.address = faker.address().fullAddress()
         data.street = faker.address().streetAddress()
-        data.country = "US"
-        data.state = "6"
-        data.city = faker.address().city()
+        data.country = "United States"
+        data.state = "California"
+        data.city = "Springfield"//faker.address().city()
         data.zipcode = faker.address().zipCodeByState("VA")
         data.status = "1"
     }
@@ -59,7 +59,6 @@ class AddSchool : BaseClassManager() {
         schoolPageObject!!.clickAddBtn()
         schoolPageObject!!.navigateToAddSchoolScreen()
         schoolPageObject!!.addSchoolInfo(data)
-        schoolPageObject!!.clickAddSchoolBtn()
 //        Assertion (Success Toast)
         schoolPageObject!!.viewSuccessMessage()
         // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
