@@ -41,10 +41,13 @@ class AddSchool : BaseClassManager() {
         data.status = "1"
     }
 
-    @Test(testName = "Add new school with single admin")
+    @Test(testName = "Add New School With Single Admin",
+        suiteName = "School",
+        description = "Verify the add school functionality")
     fun addNewSchoolWithSingleAdmin(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
@@ -62,9 +65,13 @@ class AddSchool : BaseClassManager() {
         // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
     }
 
-    @Test(testName = "Login as School Admin")
+    @Test(testName = "Login as School Admin",
+        suiteName = "School",
+        description = "Verify the school admin login functionality")
     fun loginAsNewlyAddedSchoolAdmin(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

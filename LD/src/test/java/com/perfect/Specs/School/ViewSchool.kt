@@ -22,9 +22,13 @@ class ViewSchool : BaseClassManager() {
         viewSchoolPageObject = ViewSchoolPageObject(webDriver)
     }
 
-    @Test(testName = "View School")
+    @Test(testName = "View School",
+        suiteName = "School",
+        description = "Verify if the super admin can select and view school")
     fun selectAndViewSchool(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()

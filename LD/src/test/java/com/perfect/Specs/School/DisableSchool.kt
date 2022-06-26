@@ -23,9 +23,11 @@ class DisableSchool : BaseClassManager() {
         schoolPageObject = SchoolPageObject(webDriver)
     }
 
-    @Test(testName = "Disable School")
+    @Test(testName = "Search And Disable School", suiteName = "School", description ="Verify if the user can disable school" )
     fun searchAndDisableSchool(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()

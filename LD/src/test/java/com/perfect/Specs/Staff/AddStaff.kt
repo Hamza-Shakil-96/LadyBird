@@ -37,9 +37,11 @@ class AddStaff : BaseClassManager() {
         data.staff[0].superUser = "yes"
     }
 
-    @Test(testName = "Add Staff")
+    @Test(testName = "Add Staff", suiteName = "Staff")
     fun addNewStaff(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

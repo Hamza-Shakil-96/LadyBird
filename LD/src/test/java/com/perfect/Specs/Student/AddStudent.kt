@@ -64,9 +64,13 @@ class AddStudent : BaseClassManager() {
 
     }
 
-    @Test(testName = "Add Student with new parent", priority = 1)
+    @Test(testName = "Add Student with new parent",
+        priority = 1,
+        description = "Verify if the school admin can enroll new student")
     fun addNewStudentWithNewParent(method: Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

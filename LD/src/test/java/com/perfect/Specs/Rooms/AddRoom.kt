@@ -32,8 +32,10 @@ class AddRoom : BaseClassManager() {
     }
 
     @Test(testName = "Add room in newly added school")
-    fun addRoomAgainstTheSchool(method:Method) {
-//        test = extent.startTest(method.name, method.getAnnotation(Test::class.java).testName)
+    fun addRoomAgainstTheSchool(method: Method) {
+        startTest(method.getAnnotation(Test::class.java).testName,
+            method.getAnnotation(Test::class.java).description,
+            method.getAnnotation(Test::class.java).suiteName)
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
