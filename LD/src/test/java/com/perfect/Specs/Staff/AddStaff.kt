@@ -2,8 +2,8 @@ package com.perfect.Specs.Staff
 
 import Services.BaseClassManager
 import com.github.javafaker.Faker
-import com.perfect.Class.Enums.Staff_Title
-import com.perfect.Class.Enums.Staff_Type
+import com.perfect.Class.Enums.StaffTitle
+import com.perfect.Class.Enums.StaffType
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
@@ -35,8 +35,8 @@ class AddStaff : BaseClassManager() {
         data.staff[0].emergency_name = faker.name().firstName() + " " + faker.name().lastName()
         data.staff[0].emergency_phone = faker.numerify("+1 (###) ###-####")
         data.staff[0].email_Address = faker.name().firstName() + "@mailinator.com"
-        data.staff[0].postion_type = Staff_Type.values().random().name.lowercase()
-        data.staff[0].title = Staff_Title.values().random().name.lowercase()
+        data.staff[0].postion_type = StaffType.values().random().name.lowercase()
+        data.staff[0].title = StaffTitle.values().random().name.lowercase()
         data.staff[0].superUser = "yes"
     }
 
