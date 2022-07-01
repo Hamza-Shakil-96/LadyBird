@@ -81,7 +81,7 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getTitleTypeOptions(title: String?): WebElement? {
-        return if (title.equals("part-time")) {
+        return if (title.equals("part_time")) {
             titleSecondDropElem
         } else {
             titleFirstDropElem
@@ -188,7 +188,14 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
     private fun setPositionTypeField(type: String?) {
         getPositionDropDownElem()!!.click()
         utilsPageObject.isElementVisible(getDropDown())
-        utilsPageObject.isElementClickable(getPositionTypeOptions(type))!!.click()
+        println(type)
+        if (type == "admin") {
+            var positionType = "position-admin"
+            utilsPageObject.isElementClickable(getPositionTypeOptions(positionType))!!.click()
+        } else {
+            utilsPageObject.isElementClickable(getPositionTypeOptions(type))!!.click()
+        }
+
     }
 
     private fun setTitleField(title: String?) {

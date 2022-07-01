@@ -312,7 +312,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
 
     fun viewSuccessMessage() {
         utilsPageObject.isElementVisible(toastMsg)
-        getTest()!!.log(LogStatus.INFO, "School Added successfully")
+        getTest()!!.log(LogStatus.INFO, "View success Toast")
     }
 
     fun clickAddBtn() {
@@ -331,6 +331,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         } else {
             schoolName = dataList[0].name
         }
+        getTest()!!.log(LogStatus.INFO, "Search school using Keyword: $schoolName")
         utilsPageObject.isLoaderElementVisible()
         utilsPageObject.isLoaderElementInvisible()
         setSchoolSearchTxtField(schoolName)
@@ -341,6 +342,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     fun disableSchool() {
+        getTest()!!.log(LogStatus.INFO, "Disabling School")
         utilsPageObject.isElementVisible(getSchoolSwitch())
         getSchoolSwitch()!!.click()
         utilsPageObject.isElementVisible(getDisableYesBtnElem())

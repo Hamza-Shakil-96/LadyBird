@@ -2,6 +2,8 @@ package com.perfect.Specs.Staff
 
 import Services.BaseClassManager
 import com.github.javafaker.Faker
+import com.perfect.Class.Enums.Staff_Title
+import com.perfect.Class.Enums.Staff_Type
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
@@ -22,6 +24,7 @@ class AddStaff : BaseClassManager() {
 
     @BeforeMethod
     fun initializationPageObjects() {
+
         adminHomePageObject = AdminHomePageObject(webDriver)
         loginPageObject = LoginPageObject(webDriver)
         viewSchoolPageObject = ViewSchoolPageObject(webDriver)
@@ -32,23 +35,25 @@ class AddStaff : BaseClassManager() {
         data.staff[0].emergency_name = faker.name().firstName() + " " + faker.name().lastName()
         data.staff[0].emergency_phone = faker.numerify("+1 (###) ###-####")
         data.staff[0].email_Address = faker.name().firstName() + "@mailinator.com"
-        data.staff[0].postion_type = "assistant"
-        data.staff[0].title = "part-time"
+        data.staff[0].postion_type = Staff_Type.values().random().name.lowercase()
+        data.staff[0].title = Staff_Title.values().random().name.lowercase()
         data.staff[0].superUser = "yes"
     }
 
     @Test(testName = "Add Staff", suiteName = "Staff")
     fun addNewStaff(method: Method) {
-        startTest(method.getAnnotation(Test::class.java).testName,
+        startTest(
+            method.getAnnotation(Test::class.java).testName,
             method.getAnnotation(Test::class.java).description,
-            method.getAnnotation(Test::class.java).suiteName)
+            method.getAnnotation(Test::class.java).suiteName
+        )
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStaffLink()
         staffPageObjectPageObject!!.navigateToAddStaffScreen()
         staffPageObjectPageObject!!.addStaff(data.staff[0])
-        val result: String = data.staff.last().first_name +" "+ data.staff.last().last_name
+        val result: String = data.staff.last().first_name + " " + data.staff.last().last_name
 //        assertTrue(
 //            staffPageObjectPageObject!!.viewNewlyAddStaff(result),
 //            "Newly added staff is not visible in listing"

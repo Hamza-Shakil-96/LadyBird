@@ -32,22 +32,25 @@ class SchoolData() {
         var url: String? = null
     }
 
-    class Student(){
+    class Parent() {
+        var parentFName: String? = null
+        var parentLName: String? = null
+        var phoneNumber: String? = null
+        var emailAddress: String? = null
+        var relationWithChild: String? = null
+        var parentType: String? = null
+    }
+
+    class Student() {
         var first_name: String? = null
         var last_name: String? = null
         var dateOfBirth: String? = null
         var homeRoom: String? = null
         var gender: String? = null
         var address: String? = null
-        var parentType: String? = null
-        var parentFName: String? = null
-        var parentLName: String? = null
-        var phoneNumber: String? = null
-        var emailAddress: String? = null
-        var relationWithChild: String? = null
-
-
+        var parent = Parent()
     }
+
     class Staff() {
         var first_name: String? = null
         var last_name: String? = null

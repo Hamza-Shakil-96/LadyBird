@@ -31,11 +31,17 @@ class AddRoom : BaseClassManager() {
         data.rooms[0].name = faker.color().name()
     }
 
-    @Test(testName = "Add room in newly added school")
+    @Test(
+        testName = "Add room in newly added school",
+        suiteName = "Room",
+        description = "Verify if the school admin can add new room against school"
+    )
     fun addRoomAgainstTheSchool(method: Method) {
-        startTest(method.getAnnotation(Test::class.java).testName,
+        startTest(
+            method.getAnnotation(Test::class.java).testName,
             method.getAnnotation(Test::class.java).description,
-            method.getAnnotation(Test::class.java).suiteName)
+            method.getAnnotation(Test::class.java).suiteName
+        )
         loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()

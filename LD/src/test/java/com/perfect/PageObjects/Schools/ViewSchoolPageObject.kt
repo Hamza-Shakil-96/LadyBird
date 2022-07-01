@@ -73,7 +73,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
         val schoolName = schoolObject.get("name").asText()
         val js = driver as JavascriptExecutor
 
-        var flag: Boolean = true
+        var flag = true
         var lastHeight: Long = 0
         var newHeight: Long = 0
 

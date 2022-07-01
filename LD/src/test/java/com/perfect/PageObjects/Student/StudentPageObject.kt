@@ -13,11 +13,21 @@ import org.openqa.selenium.support.FindBy
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
 import java.awt.datatransfer.StringSelection
+import java.util.*
 
 
 class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject: UtilsPageObject = UtilsPageObject(this.driver)
+    private val studentList = ArrayList<SchoolData.Student>()
+    private val dataList = ArrayList<SchoolData>()
+    private val r = Random()
+
+    @FindBy(className = "student-name") //  "//*[@id=\"Scrollable-table\"]/table/tbody/tr/td[1]")
+    val studentTableFirstRow: WebElement? = null
+
+    @FindBy(id = "search")
+    val studentSearch: WebElement? = null
 
     @FindBy(className = "MuiSnackbarContent-message")
     val toastMsg: WebElement? = null
@@ -90,6 +100,9 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
 
     @FindBy(id = "submit")
     val addStudentBtn: WebElement? = null
+
+    @FindBy(id = "parent-autocpmplete")
+    val existingParentDropDown: WebElement? = null
 
     private fun getAddBtn(): WebElement? {
         return enrollAddBtnElem
@@ -192,6 +205,10 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         return newParentTypeDropdownElem
     }
 
+    private fun getExsistingTypeDropDownElem(): WebElement? {
+        return existParentTypeDropdownElem
+    }
+
     private fun getHomeRoomLblDropdownField(): WebElement? {
         return homeRoomLblDropDownElem
     }
@@ -229,8 +246,34 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         utilsPageObject.isElementClickable(getParentTypeDropDownField()).click()
         if (type == "new") {
             utilsPageObject.isElementClickable(getNewParentTypeDropDownElem()).click()
+        } else {
+            utilsPageObject.isElementClickable(getExsistingTypeDropDownElem()).click()
         }
 
+    }
+
+    private fun getStudentListingFirstRow(): WebElement? {
+        return studentTableFirstRow
+    }
+
+    private fun getExistingParentTxtField(): WebElement? {
+        return existingParentDropDown
+    }
+
+    private fun setExistingParentTxt(parent: SchoolData.Parent) {
+        utilsPageObject.isElementVisible(getExistingParentTxtField())
+        getExistingParentTxtField()!!.sendKeys(parent.parentFName + " " + parent.parentLName)
+        getExistingParentTxtField()!!.sendKeys(Keys.chord(Keys.ARROW_DOWN));
+        getExistingParentTxtField()!!.sendKeys(Keys.chord(Keys.ENTER));
+    }
+
+    private fun getSchoolSearchTxt(): WebElement? {
+        return studentSearch
+    }
+
+    private fun setSchoolSearchTxtField(value: String?) {
+//        getSchoolSearchTxt()!!.clear()
+        getSchoolSearchTxt()!!.sendKeys(value)
     }
 
     private fun setDOBField(dob: String?) {
@@ -258,31 +301,44 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         utilsPageObject.isElementClickable(getStudentAddBtn()).click()
     }
 
-    fun addNewStudent(data: SchoolData.Student) {
+    fun addNewStudent(data: SchoolData.Student, isNew: Boolean = true) {
         val objectMapper = ObjectMapper()
         val node: JsonNode =
             FileServiceManager.convertJsonToJavaObjects()//objectMapper.readTree(File(props.getProperty("json-File_Url")))
         val schoolData: SchoolData = objectMapper.treeToValue(node[0], SchoolData::class.java)
-        val studentList = ArrayList<SchoolData.Student>()
-
         setFNameTxtField(data.first_name)
         setLNameTxtField(data.last_name)
-        selectHomeRoomField(schoolData.rooms[0].name)
+        if (schoolData.rooms.size != 0) {
+            val randomNumber = r.nextInt(schoolData.rooms.size)
+            selectHomeRoomField(schoolData.rooms[randomNumber].name)
+            data.homeRoom = schoolData.rooms[randomNumber].name.toString()
+        } else {
+            selectHomeRoomField(data.homeRoom)
+        }
         setDOBField(data.dateOfBirth)
         setGenderDropDownField(data.gender!!.lowercase())
         setAddressTxtField(data.address)
         utilsPageObject.elementScrollDown(getParentTypeDropDownField())
-        selectParentTypeField(data.parentType)
-        setParentFNameTxtField(data.parentFName)
-        setParentLNameTxtField(data.parentLName)
-        selectKidRelationField(data.relationWithChild)
-        utilsPageObject.elementScrollDown(getKidRelationDropDownLbl())
-        setPhoneNoTxtField(data.phoneNumber)
-        setEmailAddressTxtField(data.emailAddress)
+        selectParentTypeField(data.parent.parentType)
+        if (isNew) {
+            setParentFNameTxtField(data.parent.parentFName)
+            setParentLNameTxtField(data.parent.parentLName)
+            selectKidRelationField(data.parent.relationWithChild)
+            utilsPageObject.elementScrollDown(getKidRelationDropDownLbl())
+            setPhoneNoTxtField(data.parent.phoneNumber)
+            setEmailAddressTxtField(data.parent.emailAddress)
+        } else {
+            val randomNumber = r.nextInt(schoolData.student.size)
+            var parent = schoolData.student[randomNumber].parent
+            data.parent.parentFName = parent.parentFName
+            data.parent.parentLName = parent.parentLName
+            data.parent.emailAddress = parent.emailAddress
+            data.parent.phoneNumber = parent.phoneNumber
+            data.parent.relationWithChild = parent.relationWithChild
+            setExistingParentTxt(parent)
+        }
         clickStudentAddBtn()
         utilsPageObject.viewSuccessMessage()
-
-        val dataList = ArrayList<SchoolData>()
         for (element in schoolData.student) {
             if (element.first_name != null) {
                 studentList.add(element)
@@ -292,8 +348,26 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         schoolData.student = studentList
         dataList.add(schoolData)
         FileServiceManager.convertJavaObjectToJson(dataList)
-
+        //searchStudent()
     }
 
-
+    private fun searchStudent(): String? {
+        var studentName: String? = null
+        var data: SchoolData
+        if (dataList.size == 0) {
+            val objectMapper = ObjectMapper()
+            var node = FileServiceManager.convertJsonToJavaObjects()
+            data = objectMapper.treeToValue(node[0], SchoolData::class.java)
+            studentName = data.student.last().first_name
+        } else {
+            studentName = studentList.last().first_name
+            utilsPageObject.isLoaderElementVisible()
+            utilsPageObject.isLoaderElementInvisible()
+            setSchoolSearchTxtField(studentName)
+            utilsPageObject.isLoaderElementVisible()
+            utilsPageObject.isLoaderElementInvisible()
+            utilsPageObject.isElementVisible(getStudentListingFirstRow())
+        }
+        return studentName
+    }
 }
