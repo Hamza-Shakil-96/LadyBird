@@ -72,7 +72,7 @@ class AddStudent : BaseClassManager() {
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStudentLink()
         studentPageObject!!.navigateToAddStudentScreen()
-        data.student[0].parent.parentType = Enums.parentType.New.name.lowercase()
+        data.student[0].parent.parentType = Enums.ParentType.New.name.lowercase()
         data.student[0].parent.parentFName = faker.name().firstName()
         data.student[0].parent.parentLName = faker.name().lastName()
         data.student[0].parent.phoneNumber = faker.numerify("+1 (###) ###-####")
@@ -102,7 +102,7 @@ class AddStudent : BaseClassManager() {
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStudentLink()
         studentPageObject!!.navigateToAddStudentScreen()
-        data.student[0].parent.parentType = Enums.parentType.Existing.name.lowercase()
+        data.student[0].parent.parentType = Enums.ParentType.Existing.name.lowercase()
         studentPageObject!!.addNewStudent(data.student[0], false)
     }
 //    @Test(testName = "Add Student with existing parent")

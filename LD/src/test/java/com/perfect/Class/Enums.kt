@@ -11,15 +11,15 @@ class Enums {
     }
 
     enum class StaffType {
-        Lead, Assistant, Cook, admin
+        Lead, Assistant, Cook, Admin
     }
 
     enum class StaffTitle {
-        Part_time,
-        Full_time,
+        PartTime,
+        FullTime,
     }
 
-    enum class parentType {
+    enum class ParentType {
         New, Existing
     }
 }
