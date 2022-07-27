@@ -15,7 +15,6 @@ import org.openqa.selenium.support.FindBy
 class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
 
     private var utilsPageObject: UtilsPageObject = UtilsPageObject(this.driver)
-
     private val dataList = ArrayList<SchoolData>()
 
     @FindBy(xpath = "//*[@id=\"Scrollable-table\"]/table/tbody/tr/td[1]")
@@ -51,13 +50,13 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(id = "school-street")
     val schoolStreetTxtField: WebElement? = null
 
-    @FindBy(id = "school-country")
+    @FindBy(id = "country_code")
     val schoolCountryTxtField: WebElement? = null
 
-    @FindBy(id = "school-state")
+    @FindBy(id = "state_id")
     val schoolStateTxtField: WebElement? = null
 
-    @FindBy(id = "school-city")
+    @FindBy(id = "city")
     val schoolCityTxtField: WebElement? = null
 
     @FindBy(id = "menu-country_code")
@@ -92,6 +91,9 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
 
     @FindBy(className = "add-disable-btn")
     val disableYesBtn: WebElement? = null
+
+    @FindBy(className = "MuiSelect-icon")
+    val dropDownIcon: WebElement? = null
 
     private fun getBtnAdd(): WebElement? {
         return addBtn
@@ -255,7 +257,7 @@ class SchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun selectSchoolCountry(value: String? = "US") {
-        getSchoolCountryTxt()!!.click()// utilsPageObject.isElementClickable(getSchoolCountryTxt()).click()
+        utilsPageObject.isElementClickable(getSchoolCountryTxt()).click()
         utilsPageObject.isElementVisible(getDropDown())
         utilsPageObject.isElementClickable(getSchoolCountryCode(value)).click()
     }

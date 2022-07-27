@@ -348,7 +348,6 @@ class StudentPageObject(driver: WebDriver?) : PageObject(driver) {
         schoolData.student = studentList
         dataList.add(schoolData)
         FileServiceManager.convertJavaObjectToJson(dataList)
-        //searchStudent()
     }
 
     private fun searchStudent(): String? {

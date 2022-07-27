@@ -29,7 +29,6 @@ class ViewSchool : BaseClassManager() {
         startTest(method.getAnnotation(Test::class.java).testName,
             method.getAnnotation(Test::class.java).description,
             method.getAnnotation(Test::class.java).suiteName)
-        loginPageObject!!.navigateToLoginPage()
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser(true)
@@ -39,6 +38,5 @@ class ViewSchool : BaseClassManager() {
         adminHomePageObject!!.clickViewAsBtn()
         viewSchoolPageObject!!.selectSchoolFromListing()
         assertTrue(viewSchoolPageObject!!.viewSelectedSchool(), "School Name is not matching")
-
     }
 }

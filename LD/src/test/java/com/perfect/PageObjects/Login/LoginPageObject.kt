@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Util.UtilsPageObject
 import com.relevantcodes.extentreports.LogStatus
+import org.openqa.selenium.Keys
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -35,74 +36,73 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(className = "resetsubmit")
     val resetBtn: WebElement? = null
 
-    @FindBy(xpath = "//*[@id=\"fuse-toolbar\"]/div/div[3]/button/span[1]")
+    @FindBy(id = "user-menu-btn")//"//*[@id=\"fuse-toolbar\"]/div/div[3]/button/span[1]")
     val profileAvatar: WebElement? = null
 
     @FindBy(className = "MuiSnackbarContent-message")
     val invalidCredentialMsg: WebElement? = null
 
-    @FindBy(xpath = "/html/body/div[2]/div[3]/li/div[1]/span")
+    @FindBy(id = "logout-btn") //"/html/body/div[2]/div[3]/li/div[1]/span")
     val logoutSpan: WebElement? = null
 
     @FindBy(name = "loginForm")
     val loginFormElem: WebElement? = null
-
-
-    fun navigateToLoginPage() {
-//        driver[props.getProperty("base_Url")]
-    }
 
     fun viewLoginModal() {
         getTest()!!.log(LogStatus.INFO, "View Login Modal")
         utilsPageObject.isElementVisible(getLoginForm())
     }
 
-    fun getPassword(): WebElement? {
+    private fun getPassword(): WebElement? {
         return passwordTxtField
     }
 
-    fun getEmail(): WebElement? {
+    private fun getEmail(): WebElement? {
         return userEmail
     }
 
-    fun getUpdatePassword(): WebElement? {
+    private fun getUpdatePassword(): WebElement? {
         utilsPageObject.isElementVisible(updatePasswordTxtField)
         return updatePasswordTxtField
     }
 
-    fun getConfirmPassword(): WebElement? {
+    private fun getConfirmPassword(): WebElement? {
         return confirmPasswordTxtField
     }
 
-    fun getLoginForm(): WebElement? {
+    private fun getLoginForm(): WebElement? {
         return loginFormElem
     }
 
-    fun getBtnLogin(): WebElement? {
+    private fun getBtnLogin(): WebElement? {
         return loginBtn
     }
 
-    fun getBtnReset(): WebElement? {
+    private fun getBtnReset(): WebElement? {
         return resetBtn
     }
 
-    fun setUserEmail(email: String?) {
-        getEmail()!!.clear()
+    private fun setUserEmail(email: String?) {
+        getEmail()!!.sendKeys(Keys.chord(Keys.CONTROL, "a"))
+        getEmail()!!.sendKeys(Keys.DELETE)
         getEmail()!!.sendKeys(email)
     }
 
-    fun setPassword(password: String?) {
-        getPassword()!!.clear()
+    private fun setPassword(password: String?) {
+        getPassword()!!.sendKeys(Keys.chord(Keys.CONTROL, "a"))
+        getPassword()!!.sendKeys(Keys.DELETE)
         getPassword()!!.sendKeys(password)
     }
 
-    fun setUpdatePassword(password: String?) {
-        getUpdatePassword()!!.clear()
+    private fun setUpdatePassword(password: String?) {
+        getUpdatePassword()!!.sendKeys(Keys.chord(Keys.CONTROL, "a"))
+        getUpdatePassword()!!.sendKeys(Keys.DELETE)
         getUpdatePassword()!!.sendKeys(password)
     }
 
     private fun setConfirmPassword(password: String?) {
-        getConfirmPassword()!!.clear()
+        getConfirmPassword()!!.sendKeys(Keys.chord(Keys.CONTROL, "a"))
+        getConfirmPassword()!!.sendKeys(Keys.DELETE)
         getConfirmPassword()!!.sendKeys(password)
     }
 
@@ -174,7 +174,6 @@ class LoginPageObject(driver: WebDriver?) : PageObject(driver) {
             data.admins[0].isPasswordReset = true
             dataList.add(data)
             FileServiceManager.convertJavaObjectToJson(dataList)
-
         }
         getTest()!!.log(LogStatus.INFO, "Login successfully")
     }

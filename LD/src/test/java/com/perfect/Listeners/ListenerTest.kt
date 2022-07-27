@@ -1,11 +1,8 @@
 package com.perfect.Listeners
 
 import Services.BaseClassManager
-import com.aventstack.extentreports.Status
 import com.relevantcodes.extentreports.LogStatus
 import org.apache.commons.io.FileUtils
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import org.testng.ITestContext
@@ -51,7 +48,6 @@ open class ListenerTest() : BaseClassManager(), ITestListener {
             println("Exception while taking screenshot " + e.message)
 
         }
-
     }
 
     // When Test case get Skipped, this method is called.

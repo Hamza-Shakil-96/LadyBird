@@ -1,6 +1,7 @@
 package com.perfect.Specs.Staff
 
 import Services.BaseClassManager
+import Services.FileServiceManager
 import com.github.javafaker.Faker
 import com.perfect.Class.Enums.StaffTitle
 import com.perfect.Class.Enums.StaffType
@@ -21,6 +22,8 @@ class AddStaff : BaseClassManager() {
     private var staffPageObjectPageObject: StaffPageObject? = null
     private var data = SchoolData()
     private var faker = Faker(Locale("en_CA"));
+    private var props = FileServiceManager.getProps("data")
+    private var url = props.getProperty("staff_api")
 
     @BeforeMethod
     fun initializationPageObjects() {
@@ -47,12 +50,12 @@ class AddStaff : BaseClassManager() {
             method.getAnnotation(Test::class.java).description,
             method.getAnnotation(Test::class.java).suiteName
         )
-        loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStaffLink()
         staffPageObjectPageObject!!.navigateToAddStaffScreen()
         staffPageObjectPageObject!!.addStaff(data.staff[0])
+        retrieveApiStatus(url)
         val result: String = data.staff.last().first_name + " " + data.staff.last().last_name
 //        assertTrue(
 //            staffPageObjectPageObject!!.viewNewlyAddStaff(result),

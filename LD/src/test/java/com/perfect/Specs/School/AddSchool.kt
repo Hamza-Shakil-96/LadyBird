@@ -1,6 +1,7 @@
 package com.perfect.Specs.School
 
 import Services.BaseClassManager
+import Services.FileServiceManager
 import com.github.javafaker.Faker
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
@@ -19,6 +20,9 @@ class AddSchool : BaseClassManager() {
     private var homePageObject: AdminHomePageObject? = null
     private var data = SchoolData()
     private var faker = Faker(Locale("en-US"));
+    private var props = FileServiceManager.getProps("data")
+    private var schoolUrl = props.getProperty("school_api")
+    private var loginUrl = props.getProperty("login_api")
 
     @BeforeMethod
     fun initializationPageObjects() {
@@ -35,20 +39,25 @@ class AddSchool : BaseClassManager() {
         data.address = faker.address().fullAddress()
         data.street = faker.address().streetAddress()
         data.country = "United States"
-        data.state = "California"
-        data.city = "Springfield"//faker.address().city()
-        data.zipcode = faker.address().zipCodeByState("VA")
+        data.state = "Florida"
+        data.city = "Orlando"
+        data.zipcode = faker.numerify("######")
         data.status = "1"
     }
 
-    @Test(testName = "Add New School With Single Admin",
+    @Test(
+        testName = "Add New School With Single Admin",
         suiteName = "School",
-        description = "Verify the add school functionality")
+        description = "Verify the add school functionality",
+        priority = 1
+    )
     fun addNewSchoolWithSingleAdmin(method: Method) {
-        startTest(method.getAnnotation(Test::class.java).testName,
+        startTest(
+            method.getAnnotation(Test::class.java).testName,
             method.getAnnotation(Test::class.java).description,
-            method.getAnnotation(Test::class.java).suiteName)
-        loginPageObject!!.navigateToLoginPage()
+            method.getAnnotation(Test::class.java).suiteName
+        )
+
         //Assertion (Login Form)
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser(true)
@@ -59,21 +68,29 @@ class AddSchool : BaseClassManager() {
         schoolPageObject!!.clickAddBtn()
         schoolPageObject!!.navigateToAddSchoolScreen()
         schoolPageObject!!.addSchoolInfo(data)
+
 //        Assertion (Success Toast)
         schoolPageObject!!.viewSuccessMessage()
+        retrieveApiStatus(schoolUrl)
         // assertTrue(schoolPageObject!!.viewNewlyAddedSchoolInListing(), "Newly added school is not visible in listing")
+
     }
 
-    @Test(testName = "Login as School Admin",
+    @Test(
+        testName = "Login as School Admin",
         suiteName = "School",
-        description = "Verify the school admin login functionality")
+        description = "Verify the school admin login functionality",
+        priority = 2
+    )
     fun loginAsNewlyAddedSchoolAdmin(method: Method) {
-        startTest(method.getAnnotation(Test::class.java).testName,
+        startTest(
+            method.getAnnotation(Test::class.java).testName,
             method.getAnnotation(Test::class.java).description,
-            method.getAnnotation(Test::class.java).suiteName)
-        loginPageObject!!.navigateToLoginPage()
+            method.getAnnotation(Test::class.java).suiteName
+        )
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         homePageObject!!.navigateToHomeScreen()
+        retrieveApiStatus(loginUrl)
     }
 }

@@ -25,7 +25,7 @@ class ViewSchoolPageObject(driver: WebDriver?) : PageObject(driver) {
     @FindBy(className = "hd-school")
     val checkElem: WebElement? = null
 
-    @FindBy(xpath = "//*[@id=\"fuse-navbar\"]/div/div/div[1]/p")
+    @FindBy(xpath = "//*[@id=\"fuse-navbar\"]/div/div/div/div[1]/p")
     val schoolNameElem: WebElement? = null
 
     @FindBy(xpath = "//*[@id=\"scrollable-list\"]/div[last()]/div/div[2]/i")

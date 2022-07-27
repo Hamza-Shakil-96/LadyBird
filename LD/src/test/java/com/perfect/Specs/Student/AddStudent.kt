@@ -1,6 +1,7 @@
 package com.perfect.Specs.Student
 
 import Services.BaseClassManager
+import Services.FileServiceManager
 import com.github.aistomin.sexist.DefaultDictionary
 import com.github.aistomin.sexist.NamesDictionary
 import com.github.javafaker.Faker
@@ -11,6 +12,7 @@ import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
 import com.perfect.PageObjects.Login.LoginPageObject
 import com.perfect.PageObjects.Student.StudentPageObject
+import com.relevantcodes.extentreports.LogStatus
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.lang.reflect.Method
@@ -27,7 +29,8 @@ class AddStudent : BaseClassManager() {
     private val dictionary: NamesDictionary = DefaultDictionary()
     private val sdf = SimpleDateFormat("MM/dd/yyyy")
     private var gender = ""
-
+    private var props = FileServiceManager.getProps("data")
+    private var url = props.getProperty("student_api")
     @BeforeMethod
     fun initializationPageObjects() {
         adminHomePageObject = AdminHomePageObject(webDriver)
@@ -67,7 +70,6 @@ class AddStudent : BaseClassManager() {
             method.getAnnotation(Test::class.java).description,
             method.getAnnotation(Test::class.java).suiteName
         )
-        loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStudentLink()
@@ -83,6 +85,8 @@ class AddStudent : BaseClassManager() {
             data.student[0].parent.relationWithChild = Relation.Mother.name.lowercase()
         }
         studentPageObject!!.addNewStudent(data.student[0], true)
+        getTest()!!.log(LogStatus.INFO, url)
+        retrieveApiStatus(url)
     }
 
     @Test(
@@ -97,15 +101,12 @@ class AddStudent : BaseClassManager() {
             method.getAnnotation(Test::class.java).description,
             method.getAnnotation(Test::class.java).suiteName
         )
-        loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickStudentLink()
         studentPageObject!!.navigateToAddStudentScreen()
         data.student[0].parent.parentType = Enums.ParentType.Existing.name.lowercase()
         studentPageObject!!.addNewStudent(data.student[0], false)
+        retrieveApiStatus(url)
     }
-//    @Test(testName = "Add Student with existing parent")
-//    fun addNewStudentWithExistingParent() {
-//    }
 }

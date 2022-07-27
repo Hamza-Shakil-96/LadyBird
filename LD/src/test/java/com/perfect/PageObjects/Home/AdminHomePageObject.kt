@@ -1,7 +1,6 @@
 package com.perfect.PageObjects.Home
 
 import Services.PageObject
-import com.aventstack.extentreports.Status
 import com.perfect.PageObjects.Util.UtilsPageObject
 import com.relevantcodes.extentreports.LogStatus
 import org.openqa.selenium.WebDriver

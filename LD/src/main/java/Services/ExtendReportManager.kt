@@ -3,7 +3,6 @@ package Services
 import com.relevantcodes.extentreports.ExtentReports
 import com.relevantcodes.extentreports.ExtentTest
 import org.openqa.selenium.WebDriver
-import org.testng.ITestContext
 import org.testng.annotations.AfterMethod
 
 
@@ -21,6 +20,9 @@ open class ExtendReportManager() {
         extentReports!!.endTest(getTest())
     }
 
+    fun abc(){
+
+    }
     fun getTest(): ExtentTest? {
         return extentTestMap[Thread.currentThread().id.toInt()]
     }

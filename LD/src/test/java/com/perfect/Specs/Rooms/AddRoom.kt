@@ -1,6 +1,7 @@
 package com.perfect.Specs.Rooms
 
 import Services.BaseClassManager
+import Services.FileServiceManager
 import com.github.javafaker.Faker
 import com.perfect.Class.SchoolData
 import com.perfect.PageObjects.Home.AdminHomePageObject
@@ -20,6 +21,8 @@ class AddRoom : BaseClassManager() {
     private var roomPageObject: RoomPageObject? = null
     private var faker = Faker(Locale("en-US"));
     private var data = SchoolData()
+    private var props = FileServiceManager.getProps("data")
+    private var url = props.getProperty("room_api")
 
 
     @BeforeMethod
@@ -42,12 +45,12 @@ class AddRoom : BaseClassManager() {
             method.getAnnotation(Test::class.java).description,
             method.getAnnotation(Test::class.java).suiteName
         )
-        loginPageObject!!.navigateToLoginPage()
         loginPageObject!!.viewLoginModal()
         loginPageObject!!.loginUser()
         adminHomePageObject!!.clickRoomLink()
         roomPageObject!!.navigateToAddRoomScreen()
         roomPageObject!!.addRoom(data.rooms[0])
+        retrieveApiStatus(url)
 //        assertTrue(
 //            roomPageObject!!.viewNewlyAddedRoom(data.rooms.last().name.toString()),
 //            "Newly added room is not visible in listing"

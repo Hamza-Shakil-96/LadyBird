@@ -77,6 +77,9 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
     }
 
     private fun getPositionTypeOptions(type: String?): WebElement? {
+        if (type == "Admin") {
+            type == "position-admin"
+        }
         return this.driver!!.findElement(By.id(type))
     }
 
@@ -189,7 +192,7 @@ class StaffPageObject(driver: WebDriver?) : PageObject(driver) {
         getPositionDropDownElem()!!.click()
         utilsPageObject.isElementVisible(getDropDown())
         println(type)
-        if (type == "Admin") {
+        if (type == "admin") {
             var positionType = "position-admin"
             utilsPageObject.isElementClickable(getPositionTypeOptions(positionType))!!.click()
         } else {
